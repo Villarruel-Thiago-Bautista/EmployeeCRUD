@@ -23,6 +23,8 @@ public class Employee {
     private String name;
     @Column(name = "lastName", nullable = false)
     private String lastName;
+    @Column(name = "email", nullable = false)
+    private String email;
     @Column(name = "gender", nullable = false)
     private Gender gender;
     @Column(name = "dni", nullable = false)

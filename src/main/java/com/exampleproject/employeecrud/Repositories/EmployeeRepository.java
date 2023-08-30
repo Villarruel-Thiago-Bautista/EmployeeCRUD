@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-    List<EmployeeDTO> findEmployeeByGender(Gender gender);
+    List<Employee> findAllByGender(Gender gender);
 
 }
