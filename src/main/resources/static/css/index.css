@@ -66,19 +66,19 @@ button:hover {
     background-color: #444;
 }
 
-#postButton {
+#postEmployeeButton {
     background-color: green;
 }
 
-#putButton {
+#putEmployeeButton {
     background-color: orange;
 }
 
-#deletebyIdButton, #deleteAllButton {
+#deleteEmployeeByIdButton, #deleteAllEmployeesButton {
     background-color: red;
 }
 
-#getByIdButton, #getAllButton, #getByGenderButton {
+#getEmployeeByIdButton, #getAllEmployeesButton, #getEmployeeByGenderButton {
     background-color: blue;
 }
 
@@ -109,5 +109,5 @@ footer {
 }
 footer a {
     color: white;
-    text-decoration: none;
+    text-decoration: noneEmployee;
 }
