@@ -1,0 +1,113 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+/* Encabezado */
+header {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625em 1.25px;
+}
+
+.logo {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-right: 1.25em;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Hero */
+.hero {
+    background-color: #f4f4f4;
+    padding: 1.25em;
+    text-align: center;
+}
+
+/* Main */
+section {
+    margin: 1.875em 0;
+    padding: 0 1.25em;
+}
+
+/* Buttons */
+button {
+    cursor: pointer;
+    padding: 0.625em 1.25em;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+#postButton {
+    background-color: green;
+}
+
+#putButton {
+    background-color: orange;
+}
+
+#deletebyIdButton, #deleteAllButton {
+    background-color: red;
+}
+
+#getByIdButton, #getAllButton, #getByGenderButton {
+    background-color: blue;
+}
+
+/* Table */
+table {
+    margin-top: 0.625em;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.625em;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 0.625em 1.25em;
+    text-align: center;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+}
