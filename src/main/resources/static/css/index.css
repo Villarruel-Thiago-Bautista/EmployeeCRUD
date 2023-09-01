@@ -66,19 +66,19 @@ button:hover {
     background-color: #444;
 }
 
-#postEmployeeButton {
+#post-button {
     background-color: green;
 }
 
-#putEmployeeButton {
+#put-button {
     background-color: orange;
 }
 
-#deleteEmployeeByIdButton, #deleteAllEmployeesButton {
+#delete-by-id-button, #delete-all-button {
     background-color: red;
 }
 
-#getEmployeeByIdButton, #getAllEmployeesButton, #getEmployeeByGenderButton {
+#get-by-id-button, #get-all-button, #get-by-gender-button {
     background-color: blue;
 }
 
