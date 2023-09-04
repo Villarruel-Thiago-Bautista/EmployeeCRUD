@@ -55,7 +55,7 @@ function saveEmployee() {
             let emailData = data.email;
             let genderData = data.gender;
             let dniData = data.dni;
-            printOnTheScreen(ID_DATA, nameData, lastNameData, emailData, genderData, dniData);
+            addToTable(ID_DATA, nameData, lastNameData, emailData, genderData, dniData);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -66,7 +66,7 @@ function saveEmployee() {
 
 function updateEmployeeById(){
 
-    /* Constantes de los valores de los inputs para modificar */
+    /* Variables de los valores de los inputs para modificar */
 
     const ID_UPDATED = document.getElementById("put-id").value;
     let nameUpdated = document.getElementById("put-name").value;
@@ -104,7 +104,7 @@ function updateEmployeeById(){
     fetch(BY_ID_ENDPOINT, putOptions)
         .then(response => response.json())
         .then(data => {
-            updateOnTheScreen(ID_UPDATED, nameUpdated, lastNameUpdated, emailUpdated, genderUpdated, dniUpdated);
+            updateInTable(ID_UPDATED, nameUpdated, lastNameUpdated, emailUpdated, genderUpdated, dniUpdated);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -177,25 +177,166 @@ function deleteAllEmployees() {
         });
 }
 
+/* Metodos get */
+
+function getEmployeeById() {
+
+    /* Constante del valor del id ingresado */
+
+    const GET_ID = document.getElementById("get-id").value;
+
+    /* Endpoint */
+
+    const BY_ID_ENDPOINT = `http://localhost:8080/api/v1/employees/${GET_ID}`;
 
 
+    fetch(BY_ID_ENDPOINT)
+        .then(response => response.json())
+        .then(data => {
+            const ID = data.id;
+            const NAME = data.name;
+            const LAST_NAME = data.lastName;
+            const EMAIL = data.email;
+            const GENDER = data.gender
+            const DNI = data.dni;
+            printById (ID, NAME, LAST_NAME, EMAIL, GENDER, DNI);
+        })
+}
+
+function getEmployeesByGender() {
+    const GET_GENDER = document.getElementById("get-gender").value;
+    const BY_GENDER_ENDPOINT = `http://localhost:8080/api/v1/employees/gender/${GET_GENDER}`;
+    const div = document.getElementById("get-by-gender-div");
+
+    // Limpiar contenido anterior
+    div.innerHTML = '';
+
+    fetch(BY_GENDER_ENDPOINT)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error al obtener datos: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+                const ID = data[i].id;
+                const NAME = data[i].name;
+                const LAST_NAME = data[i].lastName;
+                const EMAIL = data[i].email;
+                const GENDER = data[i].gender;
+                const DNI = data[i].dni;
+                printByGender(ID, NAME, LAST_NAME, EMAIL, GENDER, DNI);
+            }
+        })
+}
+
+function getAllEmployees() {
+
+    const div = document.getElementById("get-all-div");
+
+    // Limpiar contenido anterior
+    div.innerHTML = '';
+
+    fetch(GENERAL_ENDPOINT)
+        .then(response => response.json())
+        .then(data => {
+            for (let i=0; i<data.length; i++) {
+                const ID = data[i].id;
+                const NAME = data[i].name;
+                const LAST_NAME = data[i].lastName;
+                const EMAIL = data[i].email;
+                const GENDER = data[i].gender;
+                const DNI = data[i].dni;
+                printAll(ID, NAME, LAST_NAME, EMAIL, GENDER, DNI);
+            }
+        })
+}
 
 
+/* Funciones que trabajan los datos mostrados en pantalla */
 
+/* Funcion que añade a la tabla los datos de los empleados cargados en la DB */
 
+function addToTable(idData, nameData, lastNameData, emailData, genderData, dniData) {
+    const table = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
+    const newRow = document.createElement("tr");
 
+    // Define un objeto para mapear los nombres de columna a los datos correspondientes.
+    const columnNames = {
+        ID: idData,
+        "Nombre/s": nameData,
+        "Apellido/s": lastNameData,
+        Email: emailData,
+        Género: genderData,
+        DNI: dniData,
+    };
 
+    for (const columnName in columnNames) {
+        const cell = document.createElement("td");
+        cell.textContent = columnNames[columnName];
+        newRow.appendChild(cell);
+    }
 
+    table.appendChild(newRow);
+}
 
+/* Funcion que actualiza la informacion en pantalla de la tabla con los datos modificados */
 
+function updateInTable(id, name, lastName, email, gender, dni){
 
+    const table = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
+    const rows = table.getElementsByTagName("tr");
 
+    for (let i = 0; i< rows.length; i++) {
+        const trId = rows[i].getElementsByTagName("td")[0];
+        if(trId.textContent === id) {
+            const cells = rows[i].getElementsByTagName("td");
+            cells[1].textContent = name;
+            cells[2].textContent = lastName;
+            cells[3].textContent = email;
+            cells[4].textContent = gender;
+            cells[5].textContent = dni;
+            break;
+        }
+    }
+}
 
+/* Funcion que muestra en la pantalla los datos de la persona con el id especificado */
 
+function printById (id, name, lastName, email, gender, dni) {
+    const div = document.getElementById("get-by-id-div");
+    div.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni}`;
+}
 
+/* Funcion que muestra en pantalla los datos por genero */
 
+function printByGender(id, name, lastName, email, gender, dni) {
+    const div = document.getElementById("get-by-gender-div");
 
+    // Crea un elemento div para el empleado actual
+    const employeeDiv = document.createElement("div");
 
+    // Define el contenido del elemento div
+    employeeDiv.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni}`;
+
+    // Agrega el elemento del empleado al contenedor principal
+    div.appendChild(employeeDiv);
+}
+
+function printAll(id, name, lastName, email, gender, dni){
+    const div = document.getElementById("get-all-div");
+
+    // Crea un elemento div para el empleado actual
+    const employeeDiv = document.createElement("div");
+
+    // Define el contenido del elemento div
+    employeeDiv.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni}`;
+
+    // Agrega el elemento del empleado al contenedor principal
+    div.appendChild(employeeDiv);
+}
 
 /* Botones que llaman a los metodos */
 
@@ -215,63 +356,17 @@ DELETE_ALL_BUTTON.addEventListener("click", function () {
     deleteAllEmployees();
 });
 
-/* Funciones que trabajan los datos mostrados en pantalla */
+GET_BY_ID_BUTTON.addEventListener("click", function (){
+    getEmployeeById();
+})
 
-/* Funcion que añade a la tabla los datos de los empleados cargados en la DB */
+GET_BY_GENDER_BUTTON.addEventListener("click", function (){
+    getEmployeesByGender();
+})
 
-function printOnTheScreen(idData, nameData, lastNameData, emailData, genderData, dniData) {
-
-    const table = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
-    const newRow = document.createElement("tr");
-
-    const trId = document.createElement("td");
-    trId.textContent = idData;
-    const trName = document.createElement("td");
-    trName.textContent = nameData;
-    const trLastName = document.createElement("td");
-    trLastName.textContent = lastNameData;
-    const trEmail = document.createElement("td");
-    trEmail.textContent = emailData;
-    const trGender = document.createElement("td");
-    trGender.textContent = genderData;
-    const trDni = document.createElement("td");
-    trDni.textContent = dniData;
-
-    newRow.appendChild(trId);
-    newRow.appendChild(trName);
-    newRow.appendChild(trLastName);
-    newRow.appendChild(trEmail);
-    newRow.appendChild(trGender);
-    newRow.appendChild(trDni);
-
-    table.appendChild(newRow);
-}
-
-/* Funcion que actualiza la informacion en pantalla de la tabla con los datos modificados */
-
-function updateOnTheScreen(id, name, lastName, email, gender, dni){
-
-    const table = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
-    const rows = table.getElementsByTagName("tr");
-
-    for (let i = 0; i< rows.length; i++) {
-        const trId = rows[i].getElementsByTagName("td")[0];
-        if(trId.textContent === id) {
-            const cells = rows[i].getElementsByTagName("td");
-            cells[1].textContent = name;
-            cells[2].textContent = lastName;
-            cells[3].textContent = email;
-            cells[4].textContent = gender;
-            cells[5].textContent = dni;
-            break;
-        }
-    }
-}
-
-
-
-
-
+GET_ALL_BUTTON.addEventListener("click", function () {
+    getAllEmployees();
+})
 /*
 
 Endpoints

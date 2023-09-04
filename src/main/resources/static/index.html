@@ -1,69 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+            rel="stylesheet"
+    />
     <title>CRUD empleados</title>
 </head>
 <body>
-
-    <!--Header-->
-    <header>
-        <div class="logo-contanier"><h1 class="logo">Gestor de empleados</h1></div>
+<!--Header-->
+<header>
+    <div class="container">
+        <div class="logo-contanier">
+            <h1 class="logo">Gestor de empleados</h1>
+        </div>
         <nav>
             <ul>
-                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#post">Registrar</a></li>
+                <li><a href="#put">Modificar</a></li>
+                <li><a href="#get">Listar</a></li>
+                <li><a href="#delete">Eliminar</a></li>
             </ul>
         </nav>
-    </header>
+    </div>
+</header>
 
-    <!--Main-->
-    <main>
+<!--Main-->
+<main>
+    <!--Hero-->
+    <section class="hero">
+        <h2>Gestor de empleados</h2>
+    </section>
 
-        <!--Hero-->
-        <section class="hero">
-            <h2>Gestor de empleados</h2>
-        </section>
+    <!--Presentacion-->
+    <section>
+        <h3>Gestor de empleados</h3>
+        <p>
+            Pequeño CRUD el cual permite ingresar datos de empleados a una base de
+            datos, así como también consultarlos, listarlos, eliminarlos y/o
+            modificarlos.
+            <br />El backend está hecho en Java utilizando Spring boot como
+            framework, el frontend está hecho con HTML, CSS y JavaScript, el tipo
+            de base de datos es relacional y el gestor de base de datos utilizado
+            es MySQL. <br />Apliqué los patrones de diseño MVC, DTO, inyeccion de
+            dependencias y Repository.
+        </p>
+    </section>
+    <hr />
+    <!--Agregar datos-->
+    <section id="post">
+        <h4>Registrar</h4>
+        <p>
+            Rellene los campos con la información correspondientes para cargarlos
+            en la base de datos, además, se actualizarán a continuación en un
+            tabla.
+        </p>
 
-        <!--Presentacion-->
-        <section>
-            <h3>Gestor de empleados</h3>
-            <p>
-                Pequeño CRUD el cual permite ingresar empleados a una base de datos, así como también listarlos, eliminarlos y/o modificar sus datos.
-                <br>El backend está hecho en Java utilizando Spring boot como framework, el frontend está hecho con HTML, CSS y JavaScript, el tipo de base de datos es relacional y el gestor de base de datos utilizado es MySQL.
-                <br>Apliqué los patrones de diseño MVC y DTO.
-            </p>
-        </section>
+        <form>
+            <label for="post-name">Nombre</label>
+            <input type="text" name="" id="post-name" placeholder="Nombre..." />
 
-        <!--Agregar datos-->
-        <section>
-            <h4>Registrar los datos de un nuevo empleado</h4>
-            <p>Rellene los campos con la información correspondientes para cargarlos en la base de datos, además, se actualizarán a continuación en un tabla.</p>
+            <label for="post-lastName">Apellido</label>
+            <input
+                    type="text"
+                    name=""
+                    id="post-lastName"
+                    placeholder="Apellido..."
+            />
 
-            <form>
-                <label for="post-name">Nombre</label>
-                <input type="text" name="" id="post-name" placeholder="Nombre...">
+            <label for="post-email">Email</label>
+            <input
+                    type="email"
+                    name=""
+                    id="post-email"
+                    placeholder="Correo electrónico"
+            />
 
-                <label for="post-lastName">Apellido</label>
-                <input type="text" name="" id="post-lastName" placeholder="Apellido...">
-
-                <label for="post-email">Email</label>
-                <input type="email" name="" id="post-email" placeholder="Correo electrónico">
-
-                <label for="post-gender">Género</label>
-                <select name="" id="post-gender">
+            <label for="post-gender">Género</label>
+            <select name="" id="post-gender">
                 <option value="MASCULINO">MASCULINO</option>
                 <option value="FEMENINO">FEMENINO</option>
-                </select>
+            </select>
 
-                <label for="post-dni">DNI</label>
-                <input type="text" name="" id="post-dni" placeholder="DNI...">
+            <label for="post-dni">DNI</label>
+            <input type="text" name="" id="post-dni" placeholder="DNI..." />
+        </form>
 
-            </form>
+        <button id="post-button">REGISTRAR</button>
 
-            <button id="post-button">Cargar</button>
-
+        <div id="table-container">
             <table id="table-employees">
                 <thead>
                 <tr>
@@ -77,95 +107,121 @@
                 </thead>
                 <tbody></tbody>
             </table>
-        </section>
+        </div>
+    </section>
 
-        <!--Modificar datos-->
-        <section>
-            <h4>Modificar los datos de un empleado</h4>
-            <p>Indique el ID correspondiente al empleado que desea modificar. Rellene los campos correspondientes con la información actualizada para actualizarlos en la base de datos y en la tabla.</p>
+    <hr />
+    <!--Modificar datos-->
+    <section id="put">
+        <h4>Modificar</h4>
+        <p>
+            Indique el ID correspondiente al empleado que desea modificar. Rellene
+            los campos correspondientes con la información actualizada para
+            actualizarlos en la base de datos y en la tabla.
+        </p>
 
-            <form>
-                <label for="put-id">ID:</label>
-                <input type="text" name="updateId" id="put-id">
+        <form>
+            <label for="put-id">ID:</label>
+            <input type="text" name="updateId" id="put-id" />
 
-                <label for="put-name">Nombre</label>
-                <input type="text" name="" id="put-name" placeholder="Nombre...">
+            <label for="put-name">Nombre</label>
+            <input type="text" name="" id="put-name" placeholder="Nombre..." />
 
-                <label for="put-lastName">Apellido</label>
-                <input type="text" name="" id="put-lastName" placeholder="Apellido...">
+            <label for="put-lastName">Apellido</label>
+            <input
+                    type="text"
+                    name=""
+                    id="put-lastName"
+                    placeholder="Apellido..."
+            />
 
-                <label for="put-email">Email</label>
-                <input type="email" name="" id="put-email" placeholder="Correo electrónico">
+            <label for="put-email">Email</label>
+            <input
+                    type="email"
+                    name=""
+                    id="put-email"
+                    placeholder="Correo electrónico"
+            />
 
-                <label for="put-gender">Género</label>
-                <select name="" id="put-gender">
+            <label for="put-gender">Género</label>
+            <select name="" id="put-gender">
                 <option value="MASCULINO">MASCULINO</option>
                 <option value="FEMENINO">FEMENINO</option>
-                </select>
+            </select>
 
-                <label for="put-dni">DNI</label>
-                <input type="text" name="" id="put-dni" placeholder="DNI...">
+            <label for="put-dni">DNI</label>
+            <input type="text" name="" id="put-dni" placeholder="DNI..." />
+        </form>
 
-            </form>
+        <button id="put-button">MODIFICAR</button>
+    </section>
 
-            <button id="put-button">Modificar</button>
-        </section>
+    <hr />
+    <!--Listar datos-->
+    <section id="get">
+        <h4>Listar</h4>
+        <p>
+            Puede listar los datos de un empleado por su ID, de todos los
+            empleados por su género, o simplemente de todos los empleados cargados
+            en la base de datos
+        </p>
 
-        <!--Listar datos-->
-        <section>
-            <h4>Listar datos</h4>
-            <p>Puede listar los datos de un empleado por su ID, de todos los empleados por su género, o simplemente de todos los empleados cargados en la base de datos</p>
+        <form>
+            <label for="get-id">ID:</label>
+            <input type="text" name="" id="get-id" />
+        </form>
 
-            <form>
-                <label for="get-id">ID:</label>
-                <input type="text" name="" id="get-id">
+        <button id="get-by-id-button">BUSCAR POR ID</button>
+        <div id="get-by-id-div"></div>
 
-            </form>
+        <form>
+            <label for="get-gender">Género:</label>
+            <select name="" id="get-gender">
+                <option value="MASCULINO">MASCULINO</option>
+                <option value="FEMENINO">FEMENINO</option>
+            </select>
+        </form>
 
-            <button id="get-by-id-button">Buscar por id</button>
+        <button id="get-by-gender-button">BUSCAR POR GÉNERO</button>
+        <div id="get-by-gender-div"></div>
 
-            <form>
-                <label for="get-gender">Género:</label>
-                <select name="" id="get-gender">
-                    <option value="MASCULINO">MASCULINO</option>
-                    <option value="FEMENINO">FEMENINO</option>
-                </select>
+        <button id="get-all-button">BUSCAR TODOS</button>
+        <div id="get-all-div"></div>
+    </section>
 
-            </form>
+    <hr />
+    <!--Eliminar datos-->
+    <section id="delete">
+        <h4>Eliminar</h4>
+        <p>
+            Indique el ID correspondiente al empleado que desea eliminar de la
+            base de datos, a su vez, se actualizará la tabla en pantalla.
+        </p>
 
-            <button id="get-by-gender-button">Buscar por género</button>
+        <form>
+            <label for="delete-id">ID:</label>
+            <input type="text" name="deleteId" id="delete-id" />
+        </form>
 
-            <button id="get-all-button">Buscar todos</button>
-            
-            <div id="get-datos-div"></div>
-        </section>
+        <button id="delete-by-id-button">ELIMINAR</button>
 
-        <!--Eliminar datos-->
-        <section>
+        <p>
+            Si desea eliminar los datos de todos los empleados, clickee en el
+            siguiente botón <br> <span>ESTE BOTÓN ELIMINARÁ LOS DATOS DE TODOS LOS empleados</span>
+        </p>
+        <button id="delete-all-button">ELIMINAR TODOS</button>
+    </section>
+</main>
 
-            <h4>Eliminar datos</h4>
-            <p>Indique el ID correspondiente al empleado que desea eliminar.</p>
-
-            <form>
-
-                <label for="delete-id">ID:</label>
-                <input type="text" name="deleteId" id="delete-id">
-
-            </form>
-
-            <button id="delete-by-id-button">Eliminar</button>
-
-
-            <p>Si desea eliminar los datos de todos los empleados, clickee en el siguiente botón</p>
-            <button id="delete-all-button">Eliminar todos</button>
-            <p><b>ESTE BOTÓN ELIMINARÁ LOS DATOS DE TODOS LOS EMPLEADOS</b></p>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>Proyecto hecho por: <a href="https://github.com/Villarruel-Thiago-Bautista">Villarruel Thiago Butista</a> año 2023</p>
-    </footer>
-    <script src="js/index.js"></script>
+<footer>
+    <p>
+        Proyecto hecho por:
+        <a href="https://github.com/Villarruel-Thiago-Bautista"
+        >Villarruel Thiago Butista</a
+        >
+        año 2023
+    </p>
+</footer>
+<script src="js/index.js"></script>
 </body>
 </html>

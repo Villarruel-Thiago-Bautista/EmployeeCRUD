@@ -1,113 +1,252 @@
-/* Estilos generales */
+/* ESTILOS GENERALES BÁSICOS QUE SE APLICARÁN A CUALQUIER VERSIÓN */
+/* MOBILE FIRST */
+
+* {
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    background-color: #eee;
 }
 
-h4 {
-    font-size: 1.5em;
+html {
+    scroll-behavior: smooth;
 }
 
-/* Encabezado */
-header {
-    background-color: #333;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.625em 1.25px;
+html::-webkit-scrollbar {
+    display: none;
 }
 
-.logo {
-    margin: 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-}
-
-nav li {
-    margin-right: 1.25em;
-}
-
-nav a {
-    text-decoration: none;
-    color: white;
-}
-
-/* Hero */
-.hero {
-    background-color: #f4f4f4;
-    padding: 1.25em;
-    text-align: center;
-}
-
-/* Main */
-section {
-    margin: 1.875em 0;
-    padding: 0 1.25em;
-}
-
-/* Buttons */
 button {
-    cursor: pointer;
-    padding: 0.625em 1.25em;
-    border: none;
+    font-size: 1.3em;
+    padding: 0.5em 1.3em;
+    border: 1px solid black;
     border-radius: 5px;
     color: white;
     font-weight: bold;
-    transition: background-color 0.3s;
+    width: 100%;
+    margin-bottom: 1.5em;
 }
 
 button:hover {
-    background-color: #444;
+    cursor: pointer;
 }
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2.5em;
+}
+
+h3 {
+    font-size: 2em;
+    margin: 0.5em;
+    text-align: center;
+}
+
+h4 {
+    font-size: 2em;
+    margin: 0.5em;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2em;
+    margin: 0.5em;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+section {
+    text-align: justify;
+    padding: 1em;
+}
+span {
+    font-weight: bold;
+    color: red;
+}
+.container {
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* Header */
+
+/* Hero */
+
+.hero {
+    background-image: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+    ),
+    url(../img/hero-banner.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 91.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* Presentacion */
+
+/* Ingresar */
 
 #post-button {
-    background-color: green;
+    background-color: #009d77;
 }
 
-#put-button {
-    background-color: orange;
+#post-button:hover {
+    background-color: #058163;
 }
 
-#delete-by-id-button, #delete-all-button {
-    background-color: red;
-}
-
-#get-by-id-button, #get-all-button, #get-by-gender-button {
-    background-color: blue;
-}
-
-/* Table */
-table {
-    margin-top: 0.625em;
-    border-collapse: collapse;
+#table-employees {
     width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 0.625em;
-    text-align: left;
+#table-employees th,
+td {
+    border: 1px solid #ccc;
+    padding: 1em;
+    text-align: center;
 }
 
-th {
+#table-employees th {
     background-color: #f2f2f2;
 }
 
+/* Estilos para filas alternas */
+#table-employees tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Modificar */
+
+#put-button {
+    background-color: #e97500;
+}
+
+#put-button:hover {
+    background-color: #C0680F;
+}
+
+/* Listar */
+
+#get-by-id-button, #get-by-gender-button , #get-all-button {
+    background-color: #1391ff;
+}
+
+#get-by-id-button:hover, #get-by-gender-button:hover , #get-all-button:hover {
+    background-color: #1763A6;
+}
+/* Eliminar */
+
+#delete-by-id-button, #delete-all-button {
+    background-color: #cf3030;
+}
+
+#delete-all-button:hover , #delete-by-id-button:hover {
+    background-color: #8F1212;
+}
+
+/* ESTILOS PARA LA TABLA EN MOVILES */
+
+@media screen and (max-width: 799px) {
+    #table-container {
+        overflow-x: auto;
+    }
+
+    #table-employees {
+        font-size: 1em;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #table-employees th, #table-employees td {
+        padding: 0.5em;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #table-employees th {
+        background-color: #f2f2f2;
+    }
+
+    #table-employees tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+}
+
+/* ESTILOS ESCRITORIO */
+
+@media screen and (min-width: 800px) {
+    /* Header */
+
+    header {
+        background-color: #eee;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1em;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        margin: 0;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+    }
+
+    nav li {
+        margin-left: 2em;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: black;
+    }
+}
 
 /* Footer */
+
 footer {
-    background-color: #333;
-    color: white;
-    padding: 0.625em 1.25em;
+    padding: 1em;
     text-align: center;
 }
+
 footer a {
-    color: white;
     text-decoration: none;
+    color: red;
+}
+
+footer a:hover {
+    color: #8f1212;
 }
