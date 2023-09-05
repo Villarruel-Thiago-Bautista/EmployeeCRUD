@@ -50,6 +50,7 @@ public class Employee {
     @Column(name = "dni", nullable = false)
     @NotBlank(message = "El campo no puede estar vacio")
     @NotNull(message = "El campo no puede ser nulo")
+    @Pattern(regexp = "^[0-9]{8}$", message = "El campo DNI debe contener 8 dígitos numéricos")
     private String dni;
 
 

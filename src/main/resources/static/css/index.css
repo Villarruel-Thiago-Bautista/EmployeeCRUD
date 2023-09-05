@@ -73,6 +73,7 @@ select {
 section {
     text-align: justify;
     padding: 1em;
+    margin-bottom: 10em;
 }
 span {
     font-weight: bold;
@@ -84,10 +85,6 @@ span {
 }
 
 /* Header */
-
-header {
-    display: flex;
-}
 
 /* Hero */
 
@@ -101,7 +98,7 @@ header {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    height: 91.5vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -154,40 +151,44 @@ td {
 }
 
 #put-button:hover {
-    background-color: #C0680F;
+    background-color: #c0680f;
 }
 
 /* Listar */
 
-#get-by-id-button, #get-by-gender-button , #get-all-button {
+#get-by-id-button,
+#get-by-gender-button,
+#get-all-button {
     background-color: #1391ff;
 }
 
-#get-by-id-button:hover, #get-by-gender-button:hover , #get-all-button:hover {
-    background-color: #1763A6;
+#get-by-id-button:hover,
+#get-by-gender-button:hover,
+#get-all-button:hover {
+    background-color: #1763a6;
 }
 
 .get-styles {
     text-align: center;
     font-weight: bold;
     margin-bottom: 1em;
-
 }
 
 /* Eliminar */
 
-#delete-by-id-button, #delete-all-button {
+#delete-by-id-button,
+#delete-all-button {
     background-color: #cf3030;
 }
 
-#delete-all-button:hover , #delete-by-id-button:hover {
-    background-color: #8F1212;
+#delete-all-button:hover,
+#delete-by-id-button:hover {
+    background-color: #8f1212;
 }
 
 /* ESTILOS PARA MOVILES */
 
 @media screen and (max-width: 799px) {
-
     /* Header */
 
     h1 {
@@ -220,7 +221,8 @@ td {
         width: 100%;
     }
 
-    #table-employees th, #table-employees td {
+    #table-employees th,
+    #table-employees td {
         padding: 0.5em;
         text-align: left;
         border-bottom: 1px solid #ddd;
@@ -289,3 +291,10 @@ footer a {
 footer a:hover {
     color: #8f1212;
 }
+
+.logo-github {
+    width: 2em;
+    height: auto;
+    margin: 0 auto;
+}
+

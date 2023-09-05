@@ -62,7 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeUpdated.setLastName(employee.getLastName());
         employeeUpdated.setEmail(employee.getEmail());
         employeeUpdated.setGender(employee.getGender());
-        employeeUpdated.setDni(employeeUpdated.getDni());
+        employeeUpdated.setDni(employee.getDni());
         employeeRepository.save(employeeUpdated);
         return EmployeeMapper.INSTANCE.employeeToEmployeeDTO(employeeUpdated);
 

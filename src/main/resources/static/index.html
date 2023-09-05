@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,7 +40,7 @@
     <!--Presentacion-->
     <section>
         <h3>Gestor de empleados</h3>
-        <p>
+        <p id="post">
             Pequeño CRUD el cual permite ingresar datos de empleados a una base de
             datos, así como también consultarlos, listarlos, eliminarlos y/o
             modificarlos.
@@ -48,12 +48,12 @@
             framework, el frontend está hecho con HTML, CSS y JavaScript, el tipo
             de base de datos es relacional y el gestor de base de datos utilizado
             es MySQL. <br />Apliqué los patrones de diseño MVC, DTO, inyeccion de
-            dependencias y Repository.
+            dependencias, Repository, e IoC (Inversion of Control).
         </p>
     </section>
-    <hr />
+
     <!--Agregar datos-->
-    <section id="post">
+    <section>
         <h4>Registrar</h4>
         <p>
             Rellene los campos con la información correspondientes para cargarlos
@@ -110,11 +110,11 @@
                 <tbody></tbody>
             </table>
         </div>
+        <br id="put" />
     </section>
 
-    <hr />
     <!--Modificar datos-->
-    <section id="put">
+    <section>
         <h4>Modificar</h4>
         <p>
             Indique el ID correspondiente al empleado que desea modificar. Rellene
@@ -153,14 +153,15 @@
 
             <label for="put-dni">DNI</label>
             <input type="text" name="" id="put-dni" placeholder="DNI..." />
+            <div id="error-put-container" class="error-container"></div>
         </form>
 
         <button id="put-button">MODIFICAR</button>
+        <br id="get" />
     </section>
 
-    <hr />
     <!--Listar datos-->
-    <section id="get">
+    <section>
         <h4>Listar</h4>
         <p>
             Puede listar los datos de un empleado por su ID, de todos los
@@ -191,7 +192,6 @@
         <div id="get-all-div" class="get-styles"></div>
     </section>
 
-    <hr />
     <!--Eliminar datos-->
     <section id="delete">
         <h4>Eliminar</h4>
@@ -206,22 +206,29 @@
         </form>
 
         <button id="delete-by-id-button">ELIMINAR</button>
-
+        <div id="delete-by-id-div" class="get-styles"></div>
         <p>
             Si desea eliminar los datos de todos los empleados, clickee en el
-            siguiente botón <br> <span>ESTE BOTÓN ELIMINARÁ LOS DATOS DE TODOS LOS EMPLEADOS</span>
+            siguiente botón <br />
+            <span>ESTE BOTÓN ELIMINARÁ LOS DATOS DE TODOS LOS EMPLEADOS</span>
         </p>
         <button id="delete-all-button">ELIMINAR TODOS</button>
+        <div id="delete-all-div" class="get-styles"></div>
     </section>
 </main>
 
 <footer>
     <p>
-        Proyecto hecho por:
+        &copy;
+        Página creada por
         <a href="https://github.com/Villarruel-Thiago-Bautista"
-        >Villarruel Thiago Butista</a
-        >
-        año 2023
+        target="_blank">Villarruel Thiago Bautista
+            <img
+                    id="logo_github"
+                    class="logo-github"
+                    src="img/logo-github.png"
+                    alt="Logo github"
+            /></a>
     </p>
 </footer>
 <script src="js/index.js"></script>
