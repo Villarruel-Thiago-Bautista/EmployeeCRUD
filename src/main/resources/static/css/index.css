@@ -85,6 +85,10 @@ span {
 
 /* Header */
 
+header {
+    display: flex;
+}
+
 /* Hero */
 
 .hero {
@@ -134,9 +138,13 @@ td {
     background-color: #f2f2f2;
 }
 
-/* Estilos para filas alternas */
 #table-employees tbody tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+.error-container {
+    margin-bottom: 1em;
+    color: red;
 }
 
 /* Modificar */
@@ -158,6 +166,14 @@ td {
 #get-by-id-button:hover, #get-by-gender-button:hover , #get-all-button:hover {
     background-color: #1763A6;
 }
+
+.get-styles {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1em;
+
+}
+
 /* Eliminar */
 
 #delete-by-id-button, #delete-all-button {
@@ -168,9 +184,32 @@ td {
     background-color: #8F1212;
 }
 
-/* ESTILOS PARA LA TABLA EN MOVILES */
+/* ESTILOS PARA MOVILES */
 
 @media screen and (max-width: 799px) {
+
+    /* Header */
+
+    h1 {
+        text-align: center;
+    }
+    nav ul {
+        display: flex;
+        list-style: none;
+    }
+
+    nav ul li {
+        padding: 1em;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: black;
+        border-bottom: 1px black solid;
+    }
+
+    /* Tabla */
+
     #table-container {
         overflow-x: auto;
     }

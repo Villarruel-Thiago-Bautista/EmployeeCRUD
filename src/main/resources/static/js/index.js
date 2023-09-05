@@ -15,16 +15,51 @@ const DELETE_ALL_BUTTON = document.getElementById("delete-all-button");
 /* Metodo post */
 
 function saveEmployee() {
-
-    /* Variables de los valores de los inputs de entrada*/
-
     let name = document.getElementById("post-name").value;
     let lastName = document.getElementById("post-lastName").value;
     let email = document.getElementById("post-email").value;
     let gender = document.getElementById("post-gender").value;
-    let dni =document.getElementById("post-dni").value;
+    let dni = document.getElementById("post-dni").value;
 
-    /* Json donde voy a guardar los datos ingresados */
+    /* Validaciones basicas del lado del cliente */
+    const errors = [];
+
+    if (name.trim() === "") {
+        errors.push("El nombre no puede estar en blanco.");
+    } else if (!isValidName(name)) {
+        errors.push("El nombre no puede contener números ni caracteres especiales.");
+    }
+
+    if (lastName.trim() === "") {
+        errors.push("El apellido no puede estar en blanco.");
+    } else if (!isValidName(lastName)) {
+        errors.push("El apellido no puede contener números ni caracteres especiales.");
+    }
+
+    if (email.trim() === "") {
+        errors.push("El correo electrónico no puede estar en blanco.");
+    } else if (!isValidEmail(email)) {
+        errors.push("Debe ingresar una dirección de correo electrónico válida.");
+    }
+
+    if (dni.trim() === "") {
+        errors.push("El DNI no puede estar en blanco.");
+    } else if (!isValidDni(dni)) {
+        errors.push("El DNI solo debe contener numeros");
+    }
+
+    if (errors.length > 0) {
+        // Mostrar mensajes de error al usuario
+        const errorContainer = document.getElementById("error-container");
+        errorContainer.innerHTML = "<p>Por favor, corrija los siguientes errores:</p><ul>";
+
+        errors.forEach((error) => {
+            errorContainer.innerHTML += `<li>${error}</li>`;
+        });
+
+        errorContainer.innerHTML += "</ul>";
+        return;
+    }
 
     const postRequest = {
         name: name,
@@ -34,8 +69,6 @@ function saveEmployee() {
         dni: dni
     };
 
-    /* Opciones del metodo POST */
-
     const postOptions = {
         method: "POST",
         headers: {
@@ -43,8 +76,6 @@ function saveEmployee() {
         },
         body: JSON.stringify(postRequest)
     };
-
-    /* Funcion fetch */
 
     fetch(GENERAL_ENDPOINT, postOptions)
         .then(response => response.json())
@@ -256,6 +287,26 @@ function getAllEmployees() {
 
 
 /* Funciones que trabajan los datos mostrados en pantalla */
+
+/* Funcion que verifica que el email sea valido */
+
+function isValidEmail(email) {
+    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    return emailRegex.test(email);
+}
+
+/* Funcion que verifica que el nombre y/o apellido sean validos */
+
+function isValidName(name) {
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    return nameRegex.test(name);
+}
+
+/* Funcion que verifica que el DNI sea valido */
+function isValidDni(dni) {
+    const dniRegex = /^[0-9]+$/;
+    return dniRegex.test(dni);
+}
 
 /* Funcion que añade a la tabla los datos de los empleados cargados en la DB */
 
