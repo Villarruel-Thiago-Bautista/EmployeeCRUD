@@ -269,7 +269,7 @@ function addToTable(idData, nameData, lastNameData, emailData, genderData, dniDa
         "Nombre/s": nameData,
         "Apellido/s": lastNameData,
         Email: emailData,
-        Género: genderData,
+        Genero: genderData,
         DNI: dniData,
     };
 
@@ -358,21 +358,13 @@ DELETE_ALL_BUTTON.addEventListener("click", function () {
 
 GET_BY_ID_BUTTON.addEventListener("click", function (){
     getEmployeeById();
-})
+});
 
 GET_BY_GENDER_BUTTON.addEventListener("click", function (){
     getEmployeesByGender();
-})
+});
 
 GET_ALL_BUTTON.addEventListener("click", function () {
     getAllEmployees();
-})
-/*
-
-Endpoints
-
-const generalEmployeeEndpoint = "http://localhost:8080/api/v1/employees/";
-const employeeByIdEndpoint = `http://localhost:8080/api/v1/employees/${id}`;
-const getEmployeeByGenderEndpoint =  `http://localhost:8080/api/v1/employees/gender/${gender}`;
-*/
+});
 

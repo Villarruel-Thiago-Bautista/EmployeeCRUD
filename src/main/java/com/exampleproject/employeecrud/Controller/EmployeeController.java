@@ -5,6 +5,7 @@ import com.exampleproject.employeecrud.Models.Entities.Employee;
 import com.exampleproject.employeecrud.Models.Gender;
 import com.exampleproject.employeecrud.Services.Implementation.EmployeeServiceImpl;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class EmployeeController{
     }
 
     @PostMapping("/")
-    public EmployeeDTO saveEmployee(@RequestBody Employee employee){
+    public EmployeeDTO saveEmployee(@Valid @RequestBody Employee employee){
         return employeeServiceImpl.saveEmployee(employee);
     }
 
@@ -40,7 +41,7 @@ public class EmployeeController{
     }
 
     @PutMapping("/{id}")
-    public EmployeeDTO updateEmployeeById(@PathVariable Long id, @RequestBody Employee employee){
+    public EmployeeDTO updateEmployeeById(@Valid @PathVariable Long id, @RequestBody Employee employee){
         return employeeServiceImpl.updateEmployeeById(id, employee);
     }
 
