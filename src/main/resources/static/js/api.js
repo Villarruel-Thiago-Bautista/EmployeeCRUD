@@ -1,11 +1,9 @@
 import functions from './utils/functions.js';
 
 /* Endpoint usado en post, get all, delete all */
-
 const GENERAL_ENDPOINT = "http://localhost:8080/api/v1/employees/";
 
 /* Constantes de los botones */
-
 const POST_BUTTON = document.getElementById("post-button");
 const PUT_BUTTON = document.getElementById("put-button");
 const GET_BY_ID_BUTTON = document.getElementById("get-by-id-button");
@@ -15,7 +13,6 @@ const DELETE_BY_ID_BUTTON = document.getElementById("delete-by-id-button");
 const DELETE_ALL_BUTTON = document.getElementById("delete-all-button");
 
 /* Metodo post */
-
 function saveEmployee() {
     let name = document.getElementById("post-name").value;
     let lastName = document.getElementById("post-lastName").value;
@@ -26,7 +23,6 @@ function saveEmployee() {
     let dni = document.getElementById("post-dni").value;
 
     const validationErrors = functions.isValidData(name, lastName, email, dni, age, cellphone);
-
     if (validationErrors.length > 0) {
         functions.displayErrors(validationErrors);
         return;
@@ -49,7 +45,6 @@ function saveEmployee() {
 }
 
 /* Metodo put */
-
 function updateEmployeeById() {
     const ID_UPDATED = document.getElementById("put-id").value;
     const nameUpdated = document.getElementById("put-name").value;
@@ -59,13 +54,10 @@ function updateEmployeeById() {
     const cellphoneUpdated = document.getElementById("put-cellphone").value;
     const genderUpdated = document.getElementById("put-gender").value;
     const dniUpdated = document.getElementById("put-dni").value;
-
     const BY_ID_ENDPOINT = `http://localhost:8080/api/v1/employees/${ID_UPDATED}`;
 
     const errors = functions.isValidData(nameUpdated, lastNameUpdated, emailUpdated, dniUpdated, ageUpdated, cellphoneUpdated);
-
     if (errors.length > 0) {
-        // Mostrar mensajes de error al usuario
         const errorContainer = document.getElementById("error-put-container");
         errorContainer.innerHTML = "<p>Por favor, corrija los siguientes errores:</p><ul>";
 
@@ -109,25 +101,15 @@ function updateEmployeeById() {
 }
 
 /* Metodos DELETE */
-
 function deleteEmployeById() {
     const div = document.getElementById("delete-by-id-div");
-
-    /* Constante del valor del id ingresado */
-
     const DELETE_ID = document.getElementById("delete-id").value;
-
-    /* Endpoint */
-
     const BY_ID_ENDPOINT = `http://localhost:8080/api/v1/employees/${DELETE_ID}`;
-
-    /* Opciones del metodo DELETE */
 
     const deleteOptions = {
         method: "DELETE"
     };
 
-    /* Funcion fetch */
     fetch(BY_ID_ENDPOINT, deleteOptions)
         .then(response => {
             if(!response.ok) {
@@ -143,18 +125,12 @@ function deleteEmployeById() {
             console.error('Error: no existe una persona con el id especificado', error);
         });
 }
-
 function deleteAllEmployees() {
     const div = document.getElementById("delete-all-div");
-
-
-    /* Opciones del metodo DELETE */
 
     const deleteOptions = {
         method: "DELETE"
     };
-
-    /* Funcion fetch */
 
     fetch(GENERAL_ENDPOINT, deleteOptions)
         .then(response => {
@@ -174,12 +150,8 @@ function deleteAllEmployees() {
 }
 
 /* Metodos get */
-
 function getEmployeeById() {
-    /* Constante del valor del id ingresado */
     const GET_ID = document.getElementById("get-id").value;
-
-    /* Endpoint */
     const BY_ID_ENDPOINT = `http://localhost:8080/api/v1/employees/${GET_ID}`;
 
     fetch(BY_ID_ENDPOINT)
@@ -205,13 +177,10 @@ function getEmployeeById() {
             console.error(error);
         });
 }
-
 function getEmployeesByGender() {
     const GET_GENDER = document.getElementById("get-gender").value;
     const BY_GENDER_ENDPOINT = `http://localhost:8080/api/v1/employees/gender/${GET_GENDER}`;
     const div = document.getElementById("get-by-gender-div");
-
-    // Limpiar contenido anterior
     div.innerHTML = '';
 
     fetch(BY_GENDER_ENDPOINT)
@@ -236,12 +205,8 @@ function getEmployeesByGender() {
             }
         })
 }
-
 function getAllEmployees() {
-
     const div = document.getElementById("get-all-div");
-
-    // Limpiar contenido anterior
     div.innerHTML = '';
 
     fetch(GENERAL_ENDPOINT)
@@ -267,32 +232,25 @@ function getAllEmployees() {
         })
 }
 
-    /* Botones que llaman a los metodos */
-
-    POST_BUTTON.addEventListener("click", function () {
+/* Botones que llaman a los metodos */
+POST_BUTTON.addEventListener("click", function () {
         saveEmployee();
-    });
-
-    PUT_BUTTON.addEventListener("click", function () {
+});
+PUT_BUTTON.addEventListener("click", function () {
         updateEmployeeById();
     });
-
-    DELETE_BY_ID_BUTTON.addEventListener("click", function () {
+DELETE_BY_ID_BUTTON.addEventListener("click", function () {
         deleteEmployeById();
     });
-
-    DELETE_ALL_BUTTON.addEventListener("click", function () {
+DELETE_ALL_BUTTON.addEventListener("click", function () {
         deleteAllEmployees();
     });
-
-    GET_BY_ID_BUTTON.addEventListener("click", function () {
+GET_BY_ID_BUTTON.addEventListener("click", function () {
         getEmployeeById();
     });
-
-    GET_BY_GENDER_BUTTON.addEventListener("click", function () {
+GET_BY_GENDER_BUTTON.addEventListener("click", function () {
         getEmployeesByGender();
     });
-
-    GET_ALL_BUTTON.addEventListener("click", function () {
+GET_ALL_BUTTON.addEventListener("click", function () {
         getAllEmployees();
     });

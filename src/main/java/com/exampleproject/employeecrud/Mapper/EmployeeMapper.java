@@ -14,6 +14,7 @@ public interface EmployeeMapper {
     EmployeeMapper INSTANCE = Mappers.getMapper(EmployeeMapper.class);
 
     EmployeeDTO employeeToEmployeeDTO(Employee employee);
+
     Employee employeeDTOToEmployee(EmployeeDTO employeeDTO);
 
     @IterableMapping(elementTargetType = EmployeeDTO.class)

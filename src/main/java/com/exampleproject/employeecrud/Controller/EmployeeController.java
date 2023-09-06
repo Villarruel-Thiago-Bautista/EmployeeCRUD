@@ -49,6 +49,7 @@ public class EmployeeController{
     public void deleteEmployeeById(@PathVariable Long id){
         employeeServiceImpl.deleteEmployeeById(id);
     }
+
     @DeleteMapping("/")
     public void deleteEmployeeById(){
         employeeServiceImpl.deleteAllEmployees();

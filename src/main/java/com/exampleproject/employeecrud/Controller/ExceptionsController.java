@@ -13,6 +13,7 @@ public class ExceptionsController {
 
     @ExceptionHandler(EmployeeNotFoundException.class)
     public ResponseEntity EmployeNotFoundExceptionHandler(EmployeeNotFoundException exception) {
+
         String message;
         message = exception.getMessage();
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
@@ -20,6 +21,7 @@ public class ExceptionsController {
 
     @ExceptionHandler(EmptyListException.class)
     public ResponseEntity EmptyListExceptionHandler(EmptyListException exception) {
+
         String message;
         message = exception.getMessage();
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
@@ -27,6 +29,7 @@ public class ExceptionsController {
 
     @ExceptionHandler(EmployeeGenderNotFound.class)
     public ResponseEntity EmployeeGenderNotFoundHandler(EmployeeGenderNotFound exception) {
+
         String message;
         message = exception.getMessage();
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);

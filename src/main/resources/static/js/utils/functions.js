@@ -1,9 +1,7 @@
 /* Endpoint usado en post, get all, delete all */
-
 const GENERAL_ENDPOINT = "http://localhost:8080/api/v1/employees/";
 
 /* Funcion que guarda los datos */
-
 function postData(postRequest){
     const postOptions = {
         method: "POST",
@@ -32,7 +30,6 @@ function postData(postRequest){
 }
 
 /* Funcion que muestra errores por pantalla */
-
 function displayErrors(errors) {
     const errorContainer = document.getElementById("error-container");
     errorContainer.innerHTML = "<p>Por favor, corrija los siguientes errores:</p><ul>";
@@ -40,12 +37,10 @@ function displayErrors(errors) {
     errors.forEach((error) => {
         errorContainer.innerHTML += `<li>${error}</li>`;
     });
-
     errorContainer.innerHTML += "</ul>";
 }
 
-/* Funcion que valida los campos ingresados */
-
+/* Funciones que validan campos ingresados */
 function isValidData(name, lastName, email, dni, age, cellphone) {
     const errors = [];
 
@@ -87,44 +82,28 @@ function isValidData(name, lastName, email, dni, age, cellphone) {
 
     return errors;
 }
-
-/* Funcion que verifica que la edad sea valida */
-
 function isValidAge(age) {
     const agePattern = /^\d{1,3}$/;
     return agePattern.test(age);
 }
-
-/* Funcion que verifica que el numero de telefono sea valido */
-
 function isValidCellphone(cellphone) {
     const cellphonePattern = /^\d+$/;
     return cellphonePattern.test(cellphone);
 }
-
-/* Funcion que verifica que el email sea valido */
-
 function isValidEmail(email) {
     const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
     return emailRegex.test(email);
 }
-
-/* Funcion que verifica que el nombre y/o apellido sean validos */
-
 function isValidName(name) {
     const nameRegex = /^[a-zA-Z\s]+$/;
     return nameRegex.test(name);
 }
-
-/* Funcion que verifica que el DNI sea valido */
-
 function isValidDni(dni) {
     const dniRegex = /^[0-9]{8}$/;
     return dniRegex.test(dni);
 }
 
 /* Funcion que añade a la tabla los datos de las personas cargadas en la DB */
-
 function addToTable(idData, nameData, lastNameData, emailData, genderData, dniData, ageData, cellphoneData) {
     const table = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
     const newRow = document.createElement("tr");
@@ -145,12 +124,10 @@ function addToTable(idData, nameData, lastNameData, emailData, genderData, dniDa
         cell.textContent = columnNames[columnName];
         newRow.appendChild(cell);
     }
-
     table.appendChild(newRow);
 }
 
 /* Funcion que actualiza la informacion en pantalla de la tabla con los datos modificados */
-
 function updateInTable(id, name, lastName, email, gender, dni, age, cellphone){
 
     const table = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
@@ -172,40 +149,28 @@ function updateInTable(id, name, lastName, email, gender, dni, age, cellphone){
     }
 }
 
-/* Funcion que muestra en la pantalla los datos de la persona con el id especificado */
-
+/* Funciones que muestran en pantalla los datos solicitados */
 function printById (id, name, lastName, email, gender, dni, age, cellphone) {
     const div = document.getElementById("get-by-id-div");
-
     div.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni} EDAD: ${age} TELEFONO: ${cellphone}`;
 }
-
-/* Funcion que muestra en pantalla los datos por genero */
-
 function printByGender(id, name, lastName, email, gender, dni, age, cellphone) {
     const div = document.getElementById("get-by-gender-div");
     const employeeDiv = document.createElement("div");
-
     employeeDiv.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni} EDAD: ${age} TELEFONO: ${cellphone}`;
     div.appendChild(employeeDiv);
 }
-
-/* Funcion que muestra los datos de todos*/
-
 function printAll(id, name, lastName, email, gender, dni, age, cellphone){
     const div = document.getElementById("get-all-div");
     const employeeDiv = document.createElement("div");
-
     employeeDiv.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni} EDAD: ${age} TELEFONO: ${cellphone}`;
     div.appendChild(employeeDiv);
 }
 
-/* Funcion que elimina de la tabla por ID */
-
+/* Funciones que eliminan datos de la tabla*/
 function deleteByIdTable(DELETE_ID) {
     const TABLE = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
     const ROWS = TABLE.getElementsByTagName("tr");
-
     for (let i = 0; i < ROWS.length; i++) {
         const TR_ID = ROWS[i].getElementsByTagName("td")[0];
         if (TR_ID.textContent === DELETE_ID) {
@@ -214,9 +179,6 @@ function deleteByIdTable(DELETE_ID) {
         }
     }
 }
-
-/* Funcion que elimina todos los datos en la tabla */
-
 function deleteAllTable(){
     const TABLE = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
     TABLE.innerHTML = "";

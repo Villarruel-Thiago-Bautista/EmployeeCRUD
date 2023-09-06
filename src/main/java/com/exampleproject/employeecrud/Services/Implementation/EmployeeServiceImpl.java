@@ -15,6 +15,7 @@ import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+
     private final EmployeeRepository employeeRepository;
 
     public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
@@ -24,18 +25,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDTO saveEmployee(Employee employee) {
+
         employeeRepository.save(employee);
         return EmployeeMapper.INSTANCE.employeeToEmployeeDTO(employee);
     }
 
     @Override
     public EmployeeDTO getEmployeeById(Long id) {
+
         Employee employee = employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
         return EmployeeMapper.INSTANCE.employeeToEmployeeDTO(employee);
     }
 
     @Override
     public List<EmployeeDTO> getAllEmployees() {
+
         List<Employee> employeeList = employeeRepository.findAll();
         if(employeeList.isEmpty()) {
             throw new EmptyListException();
@@ -46,6 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeDTO> getEmployeesByGender(Gender gender) {
+
         List<Employee> employeeList = employeeRepository.findAllByGender(gender);
         if(gender == Gender.MASCULINO  && employeeList.stream().noneMatch(employee -> employee.getGender() == gender) || gender == Gender.FEMENINO && employeeList.stream().noneMatch(employee -> employee.getGender() == gender)) {
             throw new EmployeeGenderNotFound(gender);
@@ -57,6 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDTO updateEmployeeById(Long id, Employee employee) {
+
         Employee employeeUpdated = employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
         employeeUpdated.setName(employee.getName());
         employeeUpdated.setLastName(employee.getLastName());
@@ -72,12 +78,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteEmployeeById(Long id) {
+
         Employee employee = employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
         employeeRepository.deleteById(id);
     }
 
     @Override
     public void deleteAllEmployees() {
+
         List<Employee> employeeList = employeeRepository.findAll();
         if (employeeList.isEmpty()) {
             throw new EmptyListException();
