@@ -10,14 +10,14 @@
             href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
             rel="stylesheet"
     />
-    <title>CRUD empleados</title>
+    <title>CRUD personas</title>
 </head>
 <body>
 <!--Header-->
 <header>
     <div class="container">
         <div class="logo-contanier">
-            <h1 class="logo">Gestor de empleados</h1>
+            <h1 class="logo">CRUD</h1>
         </div>
         <nav>
             <ul>
@@ -34,21 +34,22 @@
 <main>
     <!--Hero-->
     <section class="hero">
-        <h2>Gestor de empleados</h2>
+        <h2>CRUD de personas</h2>
     </section>
 
     <!--Presentacion-->
     <section>
-        <h3>Gestor de empleados</h3>
+        <h3>¿Qué es?</h3>
         <p id="post">
-            Pequeño CRUD el cual permite ingresar datos de empleados a una base de
-            datos, así como también consultarlos, listarlos, eliminarlos y/o
-            modificarlos.
+            CRUD el cual permite ingresar datos de personas a una base de datos,
+            así como también consultarlos, eliminarlos y/o modificarlos.
             <br />El backend está hecho en Java utilizando Spring boot como
-            framework, el frontend está hecho con HTML, CSS y JavaScript, el tipo
-            de base de datos es relacional y el gestor de base de datos utilizado
-            es MySQL. <br />Apliqué los patrones de diseño MVC, DTO, inyeccion de
-            dependencias, Repository, e IoC (Inversion of Control).
+            framework, apliqué los patrones de diseño MVC, DTO, inyeccion de
+            dependencias, Repository, e IoC (Inversion of Control). <br />
+            El frontend está hecho con HTML, CSS y JavaScript, el tipo de base de
+            datos es relacional y el gestor de base de datos utilizado es MySQL.
+            <br />
+            Los endpoints fueron testeados con Postman.
         </p>
     </section>
 
@@ -56,9 +57,9 @@
     <section>
         <h4>Registrar</h4>
         <p>
-            Rellene los campos con la información correspondientes para cargarlos
-            en la base de datos, además, se actualizarán a continuación en un
-            tabla.
+            Rellene los campos con la información correspondiente de la persona
+            para cargarla en la base de datos, además, estos se mostrarán a
+            continuación en un tabla.
         </p>
 
         <form>
@@ -78,7 +79,7 @@
                     type="email"
                     name=""
                     id="post-email"
-                    placeholder="Correo electrónico"
+                    placeholder="Correo electrónico..."
             />
 
             <label for="post-gender">Género</label>
@@ -117,14 +118,18 @@
     <section>
         <h4>Modificar</h4>
         <p>
-            Indique el ID correspondiente al empleado que desea modificar. Rellene
-            los campos correspondientes con la información actualizada para
-            actualizarlos en la base de datos y en la tabla.
+            Indique el ID correspondiente a la persona que desea modificar.
+            Rellene los campos con la nueva informacion para actualizarlos en la
+            base de datos y en la tabla. <br />
+            <b
+            >(NO DEJE ESPACIOS EN BLANCO, EN CASO DE QUE POR EJEMPLO EL NOMBRE
+                PERMANEZCA IGUAL, VUELVA A COLOCARLO TAL CUAL)</b
+            >
         </p>
 
         <form>
             <label for="put-id">ID:</label>
-            <input type="text" name="updateId" id="put-id" />
+            <input type="text" name="updateId" id="put-id" placeholder="ID..." />
 
             <label for="put-name">Nombre</label>
             <input type="text" name="" id="put-name" placeholder="Nombre..." />
@@ -142,7 +147,7 @@
                     type="email"
                     name=""
                     id="put-email"
-                    placeholder="Correo electrónico"
+                    placeholder="Correo electrónico..."
             />
 
             <label for="put-gender">Género</label>
@@ -164,14 +169,14 @@
     <section>
         <h4>Listar</h4>
         <p>
-            Puede listar los datos de un empleado por su ID, de todos los
-            empleados por su género, o simplemente de todos los empleados cargados
-            en la base de datos
+            Puede listar los datos de una persona por su ID, de todas las personas
+            por su género, o simplemente de todas las personas cargadas en la base
+            de datos
         </p>
 
         <form>
             <label for="get-id">ID:</label>
-            <input type="text" name="" id="get-id" />
+            <input type="text" name="" id="get-id" placeholder="ID..." />
         </form>
 
         <button id="get-by-id-button">BUSCAR POR ID</button>
@@ -196,21 +201,26 @@
     <section id="delete">
         <h4>Eliminar</h4>
         <p>
-            Indique el ID correspondiente al empleado que desea eliminar de la
+            Indique el ID correspondiente a la persona que desea eliminar de la
             base de datos, a su vez, se actualizará la tabla en pantalla.
         </p>
 
         <form>
             <label for="delete-id">ID:</label>
-            <input type="text" name="deleteId" id="delete-id" />
+            <input
+                    type="text"
+                    name="deleteId"
+                    id="delete-id"
+                    placeholder="ID..."
+            />
         </form>
 
         <button id="delete-by-id-button">ELIMINAR</button>
         <div id="delete-by-id-div" class="get-styles"></div>
         <p>
-            Si desea eliminar los datos de todos los empleados, clickee en el
+            Si desea eliminar los datos de todas las personas, clickee en el
             siguiente botón <br />
-            <span>ESTE BOTÓN ELIMINARÁ LOS DATOS DE TODOS LOS EMPLEADOS</span>
+            <span>ESTE BOTÓN ELIMINARÁ LOS DATOS DE TODAS LAS PERSONAS</span>
         </p>
         <button id="delete-all-button">ELIMINAR TODOS</button>
         <div id="delete-all-div" class="get-styles"></div>
@@ -219,10 +229,9 @@
 
 <footer>
     <p>
-        &copy;
-        Página creada por
-        <a href="https://github.com/Villarruel-Thiago-Bautista"
-        target="_blank">Villarruel Thiago Bautista
+        &copy; Proyecto hecho por:
+        <a href="https://github.com/Villarruel-Thiago-Bautista" target="_blank"
+        >Villarruel Thiago Bautista
             <img
                     id="logo_github"
                     class="logo-github"
@@ -231,6 +240,7 @@
             /></a>
     </p>
 </footer>
-<script src="js/index.js"></script>
+<script type="module" src="js/utils/functions.js"></script>
+<script type="module" src="js/api.js"></script>
 </body>
 </html>
