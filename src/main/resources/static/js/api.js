@@ -19,18 +19,20 @@ const DELETE_ALL_BUTTON = document.getElementById("delete-all-button");
 function saveEmployee() {
     let name = document.getElementById("post-name").value;
     let lastName = document.getElementById("post-lastName").value;
+    let age = document.getElementById("post-age").value;
     let email = document.getElementById("post-email").value;
+    let cellphone = document.getElementById("post-cellphone").value;
     let gender = document.getElementById("post-gender").value;
     let dni = document.getElementById("post-dni").value;
 
-    const validationErrors = functions.isValidData(name, lastName, email, dni);
+    const validationErrors = functions.isValidData(name, lastName, email, dni, age, cellphone);
 
     if (validationErrors.length > 0) {
         functions.displayErrors(validationErrors);
         return;
     } else {
         const errorContainer = document.getElementById("error-container");
-        errorContainer.innerHTML = "Datos cargados de manera correcta";
+        errorContainer.innerHTML = "Datos cargados de manera correcta.";
     }
 
     const postRequest = {
@@ -38,7 +40,9 @@ function saveEmployee() {
         lastName: lastName,
         email: email,
         gender: gender,
-        dni: dni
+        dni: dni,
+        age: age,
+        cellphone: cellphone
     };
 
     functions.postData(postRequest);
@@ -50,13 +54,15 @@ function updateEmployeeById() {
     const ID_UPDATED = document.getElementById("put-id").value;
     const nameUpdated = document.getElementById("put-name").value;
     const lastNameUpdated = document.getElementById("put-lastName").value;
+    const ageUpdated = document.getElementById("put-age").value;
     const emailUpdated = document.getElementById("put-email").value;
+    const cellphoneUpdated = document.getElementById("put-cellphone").value;
     const genderUpdated = document.getElementById("put-gender").value;
     const dniUpdated = document.getElementById("put-dni").value;
 
     const BY_ID_ENDPOINT = `http://localhost:8080/api/v1/employees/${ID_UPDATED}`;
 
-    const errors = functions.isValidData(nameUpdated, lastNameUpdated, emailUpdated, dniUpdated);
+    const errors = functions.isValidData(nameUpdated, lastNameUpdated, emailUpdated, dniUpdated, ageUpdated, cellphoneUpdated);
 
     if (errors.length > 0) {
         // Mostrar mensajes de error al usuario
@@ -69,12 +75,17 @@ function updateEmployeeById() {
 
         errorContainer.innerHTML += "</ul>";
         return;
+    } else {
+        const errorContainer = document.getElementById("error-put-container");
+        errorContainer.innerHTML = "Datos actualizados de manera correcta."
     }
 
     const putRequest = {
         name: nameUpdated,
         lastName: lastNameUpdated,
+        age: ageUpdated,
         email: emailUpdated,
+        cellphone: cellphoneUpdated,
         gender: genderUpdated,
         dni: dniUpdated
     };
@@ -90,7 +101,7 @@ function updateEmployeeById() {
     fetch(BY_ID_ENDPOINT, putOptions)
         .then(response => response.json())
         .then(data => {
-            functions.updateInTable(ID_UPDATED, nameUpdated, lastNameUpdated, emailUpdated, genderUpdated, dniUpdated);
+            functions.updateInTable(ID_UPDATED, nameUpdated, lastNameUpdated, emailUpdated, genderUpdated, dniUpdated, ageUpdated, cellphoneUpdated);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -183,10 +194,12 @@ function getEmployeeById() {
             const ID = data.id;
             const NAME = data.name;
             const LAST_NAME = data.lastName;
+            const AGE = data.age;
             const EMAIL = data.email;
+            const CELLPHONE = data.cellphone;
             const GENDER = data.gender;
             const DNI = data.dni;
-            functions.printById(ID, NAME, LAST_NAME, EMAIL, GENDER, DNI);
+            functions.printById(ID, NAME, LAST_NAME, EMAIL, GENDER, DNI, AGE, CELLPHONE);
         })
         .catch(error => {
             console.error(error);
@@ -214,10 +227,12 @@ function getEmployeesByGender() {
                 const ID = data[i].id;
                 const NAME = data[i].name;
                 const LAST_NAME = data[i].lastName;
+                const AGE = data.age;
                 const EMAIL = data[i].email;
+                const CELLPHONE = data.cellphone;
                 const GENDER = data[i].gender;
                 const DNI = data[i].dni;
-                functions.printByGender(ID, NAME, LAST_NAME, EMAIL, GENDER, DNI);
+                functions.printByGender(ID, NAME, LAST_NAME, EMAIL, GENDER, DNI, AGE, CELLPHONE);
             }
         })
 }
@@ -242,10 +257,12 @@ function getAllEmployees() {
                 const ID = data[i].id;
                 const NAME = data[i].name;
                 const LAST_NAME = data[i].lastName;
+                const AGE = data.age;
                 const EMAIL = data[i].email;
+                const CELLPHONE = data.cellphone;
                 const GENDER = data[i].gender;
                 const DNI = data[i].dni;
-                functions.printAll(ID, NAME, LAST_NAME, EMAIL, GENDER, DNI);
+                functions.printAll(ID, NAME, LAST_NAME, EMAIL, GENDER, DNI, AGE, CELLPHONE);
             }
         })
 }

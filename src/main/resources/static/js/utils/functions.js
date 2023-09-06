@@ -19,10 +19,12 @@ function postData(postRequest){
             const ID_DATA = data.id;
             let nameData = data.name;
             let lastNameData = data.lastName;
+            let ageData = data.age;
             let emailData = data.email;
+            let cellphoneData = data.cellphone;
             let genderData = data.gender;
             let dniData = data.dni;
-            addToTable(ID_DATA, nameData, lastNameData, emailData, genderData, dniData);
+            addToTable(ID_DATA, nameData, lastNameData, emailData, genderData, dniData, ageData, cellphoneData);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -44,7 +46,7 @@ function displayErrors(errors) {
 
 /* Funcion que valida los campos ingresados */
 
-function isValidData(name, lastName, email, dni) {
+function isValidData(name, lastName, email, dni, age, cellphone) {
     const errors = [];
 
     if (name.trim() === "") {
@@ -68,10 +70,36 @@ function isValidData(name, lastName, email, dni) {
     if (dni.trim() === "") {
         errors.push("El DNI no puede estar en blanco.");
     } else if (!isValidDni(dni)) {
-        errors.push("El DNI solo debe contener números y deben ser 8 digitos.");
+        errors.push("El DNI solo debe contener números y deben ser 8 dígitos.");
+    }
+
+    if (age.trim() === "") {
+        errors.push("La edad no puede estar en blanco.");
+    } else if (!isValidAge(age)) {
+        errors.push("La edad debe ser un número entero positivo de hasta 3 dígitos.");
+    }
+
+    if (cellphone.trim() === "") {
+        errors.push("El número de celular no puede estar en blanco.");
+    } else if (!isValidCellphone(cellphone)) {
+        errors.push("El número de celular debe ser un número entero.");
     }
 
     return errors;
+}
+
+/* Funcion que verifica que la edad sea valida */
+
+function isValidAge(age) {
+    const agePattern = /^\d{1,3}$/;
+    return agePattern.test(age);
+}
+
+/* Funcion que verifica que el numero de telefono sea valido */
+
+function isValidCellphone(cellphone) {
+    const cellphonePattern = /^\d+$/;
+    return cellphonePattern.test(cellphone);
 }
 
 /* Funcion que verifica que el email sea valido */
@@ -97,17 +125,19 @@ function isValidDni(dni) {
 
 /* Funcion que añade a la tabla los datos de las personas cargadas en la DB */
 
-function addToTable(idData, nameData, lastNameData, emailData, genderData, dniData) {
+function addToTable(idData, nameData, lastNameData, emailData, genderData, dniData, ageData, cellphoneData) {
     const table = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
     const newRow = document.createElement("tr");
 
     const columnNames = {
-        ID: idData,
+        "ID": idData,
         "Nombre/s": nameData,
         "Apellido/s": lastNameData,
-        Email: emailData,
-        Genero: genderData,
-        DNI: dniData,
+        "Email": emailData,
+        "Género": genderData,
+        "DNI": dniData,
+        "Edad": ageData,
+        "Celular": cellphoneData,
     };
 
     for (const columnName in columnNames) {
@@ -121,7 +151,7 @@ function addToTable(idData, nameData, lastNameData, emailData, genderData, dniDa
 
 /* Funcion que actualiza la informacion en pantalla de la tabla con los datos modificados */
 
-function updateInTable(id, name, lastName, email, gender, dni){
+function updateInTable(id, name, lastName, email, gender, dni, age, cellphone){
 
     const table = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
     const rows = table.getElementsByTagName("tr");
@@ -135,6 +165,8 @@ function updateInTable(id, name, lastName, email, gender, dni){
             cells[3].textContent = email;
             cells[4].textContent = gender;
             cells[5].textContent = dni;
+            cells[6].textContent = age;
+            cells[7].textContent = cellphone;
             break;
         }
     }
@@ -142,29 +174,29 @@ function updateInTable(id, name, lastName, email, gender, dni){
 
 /* Funcion que muestra en la pantalla los datos de la persona con el id especificado */
 
-function printById (id, name, lastName, email, gender, dni) {
+function printById (id, name, lastName, email, gender, dni, age, cellphone) {
     const div = document.getElementById("get-by-id-div");
 
-    div.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni}`;
+    div.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni} EDAD: ${age} TELEFONO: ${cellphone}`;
 }
 
 /* Funcion que muestra en pantalla los datos por genero */
 
-function printByGender(id, name, lastName, email, gender, dni) {
+function printByGender(id, name, lastName, email, gender, dni, age, cellphone) {
     const div = document.getElementById("get-by-gender-div");
     const employeeDiv = document.createElement("div");
 
-    employeeDiv.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni}`;
+    employeeDiv.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni} EDAD: ${age} TELEFONO: ${cellphone}`;
     div.appendChild(employeeDiv);
 }
 
 /* Funcion que muestra los datos de todos*/
 
-function printAll(id, name, lastName, email, gender, dni){
+function printAll(id, name, lastName, email, gender, dni, age, cellphone){
     const div = document.getElementById("get-all-div");
     const employeeDiv = document.createElement("div");
 
-    employeeDiv.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni}`;
+    employeeDiv.innerHTML = `ID: ${id} NOMBRE: ${name} APELLIDO: ${lastName} EMAIL: ${email} GÉNERO: ${gender} DNI: ${dni} EDAD: ${age} TELEFONO: ${cellphone}`;
     div.appendChild(employeeDiv);
 }
 

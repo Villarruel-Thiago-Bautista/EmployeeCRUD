@@ -2,10 +2,7 @@ package com.exampleproject.employeecrud.Models.Entities;
 
 import com.exampleproject.employeecrud.Models.Gender;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,11 +33,21 @@ public class Employee {
     @Pattern(regexp = "^[a-zA-Z]+$", message = "El campo nombre no puede contener números ni caracteres especiales")
     private String lastName;
 
+    @Column(name = "age", nullable = false)
+    @Positive(message = "Debe ser positivo y no nulo")
+    @NotNull(message = "El campo no puede ser nulo")
+    private Integer age;
+
     @Column(name = "email", nullable = false)
     @NotBlank(message = "El campo no puede estar vacio")
     @NotNull(message = "El campo no puede ser nulo")
     @Email(message = "El campo debe contener un formato de direccion de correo electronico valido")
     private String email;
+
+    @Column(name = "cellphone", nullable = false)
+    @Positive(message = "Debe ser positivo y no nulo")
+    @NotNull(message = "El campo no puede ser nulo")
+    private Long cellphone;
 
     @Column(name = "gender", nullable = false)
     @NotNull(message = "El campo no puede ser nulo")

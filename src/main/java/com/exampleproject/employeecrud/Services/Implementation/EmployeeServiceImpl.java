@@ -60,7 +60,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employeeUpdated = employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
         employeeUpdated.setName(employee.getName());
         employeeUpdated.setLastName(employee.getLastName());
+        employeeUpdated.setAge(employee.getAge());
         employeeUpdated.setEmail(employee.getEmail());
+        employeeUpdated.setCellphone(employee.getCellphone());
         employeeUpdated.setGender(employee.getGender());
         employeeUpdated.setDni(employee.getDni());
         employeeRepository.save(employeeUpdated);
