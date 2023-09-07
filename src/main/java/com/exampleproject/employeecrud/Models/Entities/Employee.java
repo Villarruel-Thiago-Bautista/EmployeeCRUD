@@ -24,49 +24,49 @@ public class Employee {
     private Long id;
 
     @Column(name = "name", nullable = false)
-    @NotBlank(message = "El campo no puede estar vacio")
-    @NotNull(message = "El campo no puede ser nulo")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "El campo nombre no puede contener números ni caracteres especiales")
-    @Schema(description = "Nombre del empleado", example = "John")
+    @NotBlank(message = "The field cannot be empty")
+    @NotNull(message = "The field cannot be null")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "The name field cannot contain numbers or special characters")
+    @Schema(description = "Employee's name", example = "John")
     private String name;
 
     @Column(name = "lastName", nullable = false)
-    @NotBlank(message = "El campo no puede estar vacio")
-    @NotNull(message = "El campo no puede ser nulo")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "El campo nombre no puede contener números ni caracteres especiales")
-    @Schema(description = "Apellido del empleado", example = "Doe")
+    @NotBlank(message = "The field cannot be empty")
+    @NotNull(message = "The field cannot be null")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "The lastname field cannot contain numbers or special characters")
+    @Schema(description = "Employee's name", example = "Doe")
     private String lastName;
 
     @Column(name = "age", nullable = false)
-    @Positive(message = "Debe ser positivo y no nulo")
-    @NotNull(message = "El campo no puede ser nulo")
-    @Schema(description = "Edad del empleado", example = "30")
+    @Positive(message = "Must be positive and non-null")
+    @NotNull(message = "The field cannot be null")
+    @Schema(description = "Employee's age", example = "30")
     private Integer age;
 
     @Column(name = "email", nullable = false)
-    @NotBlank(message = "El campo no puede estar vacio")
-    @NotNull(message = "El campo no puede ser nulo")
-    @Email(message = "El campo debe contener un formato de direccion de correo electronico valido")
-    @Schema(description = "Correo electrónico del empleado", example = "example@example.com")
+    @NotBlank(message = "The field cannot be empty")
+    @NotNull(message = "The field cannot be null")
+    @Email(message = "The field must contain a valid email address format")
+    @Schema(description = "Employee's email address.", example = "example@example.com")
     private String email;
 
     @Column(name = "cellphone", nullable = false)
-    @Positive(message = "Debe ser positivo y no nulo")
-    @NotNull(message = "El campo no puede ser nulo")
-    @Schema(description = "Número de teléfono del empleado", example = "123456789")
+    @Positive(message = "Must be positive and non-null")
+    @NotNull(message = "The field cannot be null")
+    @Schema(description = "Employee's phone number", example = "123456789")
     private Long cellphone;
 
     @Column(name = "gender", nullable = false)
-    @NotNull(message = "El campo no puede ser nulo")
+    @NotNull(message = "The field cannot be null")
     @Enumerated(value = EnumType.STRING)
-    @Schema(description = "Género del empleado", example = "MASCULINO")
+    @Schema(description = "Employee's phone number", example = "MALE")
     private Gender gender;
 
     @Column(name = "dni", nullable = false)
-    @NotBlank(message = "El campo no puede estar vacio")
-    @NotNull(message = "El campo no puede ser nulo")
-    @Pattern(regexp = "^[0-9]{8}$", message = "El campo DNI debe contener 8 dígitos numéricos")
-    @Schema(description = "DNI del empleado", example = "12345678")
+    @NotBlank(message = "The field cannot be empty")
+    @NotNull(message = "The field cannot be null")
+    @Pattern(regexp = "^[0-9]{8}$", message = "The DNI (National Identification Document) field must contain 8 numeric digits.")
+    @Schema(description = "Employee's DNI (National Identification Document)", example = "12345678")
     private String dni;
 
 

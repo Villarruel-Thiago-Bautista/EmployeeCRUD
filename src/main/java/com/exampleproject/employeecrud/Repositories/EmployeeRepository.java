@@ -1,6 +1,5 @@
 package com.exampleproject.employeecrud.Repositories;
 
-import com.exampleproject.employeecrud.Dto.EmployeeDTO;
 import com.exampleproject.employeecrud.Models.Entities.Employee;
 import com.exampleproject.employeecrud.Models.Gender;
 import org.springframework.data.jpa.repository.JpaRepository;

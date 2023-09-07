@@ -10,7 +10,7 @@
             href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
             rel="stylesheet"
     />
-    <title>CRUD personas</title>
+    <title>Person CRUD</title>
 </head>
 <body>
 <!--Header-->
@@ -21,10 +21,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#post">Registrar</a></li>
-                <li><a href="#put">Modificar</a></li>
-                <li><a href="#get">Listar</a></li>
-                <li><a href="#delete">Eliminar</a></li>
+                <li><a href="#post">Create</a></li>
+                <li><a href="#put">Update</a></li>
+                <li><a href="#get">Read</a></li>
+                <li><a href="#delete">Delete</a></li>
             </ul>
         </nav>
     </div>
@@ -34,44 +34,36 @@
 <main>
     <!--Hero-->
     <section class="hero">
-        <h2>CRUD de personas</h2>
+        <h2>Person CRUD</h2>
     </section>
 
-    <!--Presentacion-->
+    <!--Presentation-->
     <section>
-        <h3>¿Qué es?</h3>
+        <h3>What is it?</h3>
         <p id="post">
-            CRUD el cual permite ingresar datos de personas a una base de datos,
-            así como también consultarlos, eliminarlos y/o modificarlos.
-            <br />El backend está hecho en Java utilizando Spring boot como
-            framework, apliqué los patrones de diseño MVC, DTO, inyeccion de
-            dependencias, Repository, e IoC (Inversion of Control). <br />
-            El frontend está hecho con HTML, CSS y JavaScript, el tipo de base de
-            datos es relacional y el gestor de base de datos utilizado es MySQL.
-            <br />
-            Los endpoints fueron testeados con Postman.
+            It's a Java-based REST API CRUD using Spring Boot as the framework, where I applied design patterns such as: MVC, DTO, Repository, IoC, and Dependency Injection. I also implemented data validation and custom exception handling.
+            <br />The frontend is built with HTML, CSS, and JavaScript.<br />
+            It uses a relational SQL database, I used MySQL as the database management system, and is version-controlled with Git. <br> The endpoints were tested with Postman and are documented using Swagger.
         </p>
     </section>
 
-    <!--Agregar datos-->
+    <!--Add data-->
     <section>
-        <h4>Registrar</h4>
+        <h4>Create</h4>
         <p>
-            Rellene los campos con la información correspondiente de la persona
-            para cargarla en la base de datos, además, estos se mostrarán a
-            continuación en un tabla.
+            Fill in the fields with the corresponding person's information to load it into the database, and they will be displayed in a table below.
         </p>
 
         <form>
-            <label for="post-name">Nombre</label>
-            <input type="text" name="" id="post-name" placeholder="Nombre..." />
+            <label for="post-name">Name</label>
+            <input type="text" name="" id="post-name" placeholder="Name..." />
 
-            <label for="post-lastName">Apellido</label>
+            <label for="post-lastName">Lastname</label>
             <input
                     type="text"
                     name=""
                     id="post-lastName"
-                    placeholder="Apellido..."
+                    placeholder="Lastname..."
             />
 
             <label for="post-email">Email</label>
@@ -79,41 +71,41 @@
                     type="email"
                     name=""
                     id="post-email"
-                    placeholder="Correo electrónico..."
+                    placeholder="Email address..."
             />
 
-            <label for="post-gender">Género</label>
+            <label for="post-gender">Gender</label>
             <select name="" id="post-gender">
-                <option value="MASCULINO">MASCULINO</option>
-                <option value="FEMENINO">FEMENINO</option>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
             </select>
 
             <label for="post-dni">DNI</label>
             <input type="text" name="" id="post-dni" placeholder="DNI..." />
 
-            <label for="post-age">Edad</label>
-            <input type="text" name="" id="post-age" placeholder="Edad..." />
+            <label for="post-age">Age</label>
+            <input type="text" name="" id="post-age" placeholder="Age..." />
 
-            <label for="post-cellphone">Celular</label>
-            <input type="text" name="" id="post-cellphone" placeholder="Celular..." />
+            <label for="post-cellphone">Cellphone</label>
+            <input type="text" name="" id="post-cellphone" placeholder="Cellphone..." />
 
             <div id="error-container" class="error-container"></div>
         </form>
 
-        <button id="post-button">REGISTRAR</button>
+        <button id="post-button">CREATE</button>
 
         <div id="table-container">
             <table id="table-employees">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre/s</th>
-                    <th>Apellido/s</th>
+                    <th>Name</th>
+                    <th>Lastname</th>
                     <th>Email</th>
-                    <th>Genero</th>
+                    <th>Gender</th>
                     <th>DNI</th>
-                    <th>Edad</th>
-                    <th>Celular</th>
+                    <th>Age</th>
+                    <th>Cellphone</th>
                 </tr>
                 </thead>
                 <tbody></tbody>
@@ -122,16 +114,13 @@
         <br id="put" />
     </section>
 
-    <!--Modificar datos-->
+    <!--Modify data-->
     <section>
-        <h4>Modificar</h4>
+        <h4>Update</h4>
         <p>
-            Indique el ID correspondiente a la persona que desea modificar.
-            Rellene los campos con la nueva informacion para actualizarlos en la
-            base de datos y en la tabla. <br />
+            Specify the ID corresponding to the person you wish to modify. Fill in the fields with the new information to update them in the database and in the table. <br />
             <b
-            >(NO DEJE ESPACIOS EN BLANCO, EN CASO DE QUE POR EJEMPLO EL NOMBRE
-                PERMANEZCA IGUAL, VUELVA A COLOCARLO TAL CUAL)</b
+            > (DO NOT LEAVE BLANK SPACES; IN CASE, FOR EXAMPLE, THE NAME REMAINS THE SAME, ENTER IT AS IT IS)</b
             >
         </p>
 
@@ -139,15 +128,15 @@
             <label for="put-id">ID:</label>
             <input type="text" name="updateId" id="put-id" placeholder="ID..." />
 
-            <label for="put-name">Nombre</label>
-            <input type="text" name="" id="put-name" placeholder="Nombre..." />
+            <label for="put-name">Name</label>
+            <input type="text" name="" id="put-name" placeholder="Name..." />
 
-            <label for="put-lastName">Apellido</label>
+            <label for="put-lastName">Lastname</label>
             <input
                     type="text"
                     name=""
                     id="put-lastName"
-                    placeholder="Apellido..."
+                    placeholder="Lastname..."
             />
 
             <label for="put-email">Email</label>
@@ -155,37 +144,35 @@
                     type="email"
                     name=""
                     id="put-email"
-                    placeholder="Correo electrónico..."
+                    placeholder="Email address..."
             />
 
-            <label for="put-gender">Género</label>
+            <label for="put-gender">Gender</label>
             <select name="" id="put-gender">
-                <option value="MASCULINO">MASCULINO</option>
-                <option value="FEMENINO">FEMENINO</option>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
             </select>
 
             <label for="put-dni">DNI</label>
             <input type="text" name="" id="put-dni" placeholder="DNI..." />
 
-            <label for="put-age">Edad</label>
-            <input type="text" name="" id="put-age" placeholder="Edad..." />
+            <label for="put-age">Age</label>
+            <input type="text" name="" id="put-age" placeholder="Age..." />
 
-            <label for="put-cellphone">Celular</label>
-            <input type="text" name="" id="put-cellphone" placeholder="Celular..." />
+            <label for="put-cellphone">Cellphone</label>
+            <input type="text" name="" id="put-cellphone" placeholder="Cellphone..." />
             <div id="error-put-container" class="error-container"></div>
         </form>
 
-        <button id="put-button">MODIFICAR</button>
+        <button id="put-button">UPDATE</button>
         <br id="get" />
     </section>
 
-    <!--Listar datos-->
+    <!--Read data-->
     <section>
-        <h4>Listar</h4>
+        <h4>Read</h4>
         <p>
-            Puede listar los datos de una persona por su ID, de todas las personas
-            por su género, o simplemente de todas las personas cargadas en la base
-            de datos
+            You can list the data of a person by their ID, of all persons by their gender, or simply of all persons loaded in the database.
         </p>
 
         <form>
@@ -193,30 +180,29 @@
             <input type="text" name="" id="get-id" placeholder="ID..." />
         </form>
 
-        <button id="get-by-id-button">BUSCAR POR ID</button>
+        <button id="get-by-id-button">READ BY ID</button>
         <div id="get-by-id-div" class="get-styles"></div>
 
         <form>
-            <label for="get-gender">Género:</label>
+            <label for="get-gender">Gender:</label>
             <select name="" id="get-gender">
-                <option value="MASCULINO">MASCULINO</option>
-                <option value="FEMENINO">FEMENINO</option>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
             </select>
         </form>
 
-        <button id="get-by-gender-button">BUSCAR POR GÉNERO</button>
+        <button id="get-by-gender-button">READ BY GENDER</button>
         <div id="get-by-gender-div" class="get-styles"></div>
 
-        <button id="get-all-button">BUSCAR TODOS</button>
+        <button id="get-all-button">READ ALL</button>
         <div id="get-all-div" class="get-styles"></div>
     </section>
 
-    <!--Eliminar datos-->
+    <!--Delete data-->
     <section id="delete">
-        <h4>Eliminar</h4>
+        <h4>Delete</h4>
         <p>
-            Indique el ID correspondiente a la persona que desea eliminar de la
-            base de datos, a su vez, se actualizará la tabla en pantalla.
+            Specify the ID corresponding to the person you want to delete from the database, and at the same time, the table on the screen will be updated.
         </p>
 
         <form>
@@ -229,21 +215,20 @@
             />
         </form>
 
-        <button id="delete-by-id-button">ELIMINAR</button>
+        <button id="delete-by-id-button">DELETE BY ID</button>
         <div id="delete-by-id-div" class="get-styles"></div>
         <p>
-            Si desea eliminar los datos de todas las personas, clickee en el
-            siguiente botón <br />
-            <span>ESTE BOTÓN ELIMINARÁ LOS DATOS DE TODAS LAS PERSONAS</span>
+            If you want to delete the data of all persons, click on the following button. <br />
+            <span>THIS BUTTON WILL DELETE THE DATA OF ALL PERSONS.</span>
         </p>
-        <button id="delete-all-button">ELIMINAR TODOS</button>
+        <button id="delete-all-button">DELETE ALL</button>
         <div id="delete-all-div" class="get-styles"></div>
     </section>
 </main>
 
 <footer>
     <p>
-        &copy; Proyecto hecho por:
+        &copy; Project made by:
         <a href="https://github.com/Villarruel-Thiago-Bautista" target="_blank"
         >Villarruel Thiago Bautista
             <img

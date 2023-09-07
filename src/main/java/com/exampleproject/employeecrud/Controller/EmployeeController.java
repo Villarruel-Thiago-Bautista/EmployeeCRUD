@@ -26,69 +26,69 @@ public class EmployeeController{
     }
 
     @PostMapping("/")
-    @Operation(summary = "Insertar Persona", description = "Inserta una nueva persona.")
-    @ApiResponse(responseCode = "200", description = "Persona insertada exitosamente", content = @Content(mediaType = "application/json", schema = @Schema(implementation = EmployeeDTO.class)))
-    @ApiResponse(responseCode = "400", description = "Error en la solicitud")
-    @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    @Operation(summary = "Insert person", description = "Insert a new person.")
+    @ApiResponse(responseCode = "200", description = "Person inserted successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = EmployeeDTO.class)))
+    @ApiResponse(responseCode = "400", description = "Request error")
+    @ApiResponse(responseCode = "500", description = "Internal server error")
     public EmployeeDTO saveEmployee(@Valid @RequestBody Employee employee){
         return employeeServiceImpl.saveEmployee(employee);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Obtener Persona por ID", description = "Obtiene una persona por su ID.")
-    @ApiResponse(responseCode = "200", description = "Persona encontrada", content = @Content(mediaType = "application/json", schema = @Schema(implementation = EmployeeDTO.class)))
-    @ApiResponse(responseCode = "400", description = "Error en la solicitud")
-    @ApiResponse(responseCode = "500", description = "Error interno del servidor")
-    @ApiResponse(responseCode = "404", description = "Persona no encontrada")
+    @Operation(summary = "Get person by ID", description = "Gets a person by their id.")
+    @ApiResponse(responseCode = "200", description = " Person found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = EmployeeDTO.class)))
+    @ApiResponse(responseCode = "400", description = "Request error")
+    @ApiResponse(responseCode = "500", description = "Internal server error")
+    @ApiResponse(responseCode = "404", description = "Person not found")
     public EmployeeDTO getEmployeeById(@PathVariable Long id) {
         return employeeServiceImpl.getEmployeeById(id);
     }
 
     @GetMapping("/")
-    @Operation(summary = "Obtener Todas las Personas", description = "Obtiene todas las personas.")
-    @ApiResponse(responseCode = "200", description = "Lista de todas las personas", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = EmployeeDTO.class))))
-    @ApiResponse(responseCode = "400", description = "Error en la solicitud")
-    @ApiResponse(responseCode = "500", description = "Error interno del servidor")
-    @ApiResponse(responseCode = "404", description = "Lista de personas vacía")
+    @Operation(summary = "Get all persons", description = "Gets all persons.")
+    @ApiResponse(responseCode = "200", description = "List of all persons", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = EmployeeDTO.class))))
+    @ApiResponse(responseCode = "400", description = "Request error")
+    @ApiResponse(responseCode = "500", description = "Internal server error")
+    @ApiResponse(responseCode = "404", description = "Empty list of persons")
     public List<EmployeeDTO> getAllEmployees(){
         return employeeServiceImpl.getAllEmployees();
     }
 
     @GetMapping("/gender/{gender}")
-    @Operation(summary = "Obtener Lista de Personas por Género", description = "Obtiene una lista de personas por su género.")
-    @ApiResponse(responseCode = "200", description = "Lista de personas por género", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = EmployeeDTO.class))))
-    @ApiResponse(responseCode = "400", description = "Error en la solicitud")
-    @ApiResponse(responseCode = "500", description = "Error interno del servidor")
-    @ApiResponse(responseCode = "404", description = "Persona no encontrada por género")
+    @Operation(summary = "Get list of persons by gender", description = "Gets a list of persons by their gender.")
+    @ApiResponse(responseCode = "200", description = "List of persons by gender", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = EmployeeDTO.class))))
+    @ApiResponse(responseCode = "400", description = "Request error")
+    @ApiResponse(responseCode = "500", description = "Internal server error")
+    @ApiResponse(responseCode = "404", description = "Person not found by gender")
     public List<EmployeeDTO> getEmployeesByGender(@PathVariable Gender gender) {
         return employeeServiceImpl.getEmployeesByGender(gender);
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Actualizar Persona", description = "Actualiza una persona existente por su ID.")
-    @ApiResponse(responseCode = "200", description = "Persona actualizada exitosamente", content = @Content(mediaType = "application/json", schema = @Schema(implementation = EmployeeDTO.class)))
-    @ApiResponse(responseCode = "400", description = "Error en la solicitud")
-    @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    @Operation(summary = "Update person", description = "Updates an existing person by their ID.")
+    @ApiResponse(responseCode = "200", description = "Person updated successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = EmployeeDTO.class)))
+    @ApiResponse(responseCode = "400", description = "Request error")
+    @ApiResponse(responseCode = "500", description = "Internal server error")
     public EmployeeDTO updateEmployeeById(@Valid @PathVariable Long id, @RequestBody Employee employee){
         return employeeServiceImpl.updateEmployeeById(id, employee);
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar Persona por ID", description = "Elimina una persona por su ID.")
-    @ApiResponse(responseCode = "200", description = "Persona eliminada exitosamente")
-    @ApiResponse(responseCode = "400", description = "Error en la solicitud")
-    @ApiResponse(responseCode = "500", description = "Error interno del servidor")
-    @ApiResponse(responseCode = "404", description = "Persona no encontrada")
+    @Operation(summary = "Delete person by ID", description = "Deletes a person by their ID.")
+    @ApiResponse(responseCode = "200", description = "Person deleted successfully")
+    @ApiResponse(responseCode = "400", description = "Request error")
+    @ApiResponse(responseCode = "500", description = "Internal server error")
+    @ApiResponse(responseCode = "404", description = "Person not found")
     public void deleteEmployeeById(@PathVariable Long id){
         employeeServiceImpl.deleteEmployeeById(id);
     }
 
     @DeleteMapping("/")
-    @Operation(summary = "Eliminar Todas las Personas", description = "Elimina todas las personas.")
-    @ApiResponse(responseCode = "200", description = "Todas las personas eliminadas exitosamente")
-    @ApiResponse(responseCode = "400", description = "Error en la solicitud")
-    @ApiResponse(responseCode = "500", description = "Error interno del servidor")
-    @ApiResponse(responseCode = "404", description = "Lista de personas vacía")
+    @Operation(summary = "Delete all persons", description = "Deletes all persons.")
+    @ApiResponse(responseCode = "200", description = "All persons deleted successfully")
+    @ApiResponse(responseCode = "400", description = "Request error")
+    @ApiResponse(responseCode = "500", description = "Internal server error")
+    @ApiResponse(responseCode = "404", description = "Empty list of persons")
     public void deleteEmployeeById(){
         employeeServiceImpl.deleteAllEmployees();
     }

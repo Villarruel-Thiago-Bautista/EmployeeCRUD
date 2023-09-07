@@ -52,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<EmployeeDTO> getEmployeesByGender(Gender gender) {
 
         List<Employee> employeeList = employeeRepository.findAllByGender(gender);
-        if(gender == Gender.MASCULINO  && employeeList.stream().noneMatch(employee -> employee.getGender() == gender) || gender == Gender.FEMENINO && employeeList.stream().noneMatch(employee -> employee.getGender() == gender)) {
+        if(gender == Gender.MALE  && employeeList.stream().noneMatch(employee -> employee.getGender() == gender) || gender == Gender.FEMALE && employeeList.stream().noneMatch(employee -> employee.getGender() == gender)) {
             throw new EmployeeGenderNotFound(gender);
         } else {
             return EmployeeMapper.INSTANCE.employeeListToEmployeeDTOList(employeeList);

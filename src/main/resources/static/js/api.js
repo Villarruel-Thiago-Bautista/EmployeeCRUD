@@ -3,7 +3,7 @@ import functions from './utils/functions.js';
 /* Endpoint usado en post, get all, delete all */
 const GENERAL_ENDPOINT = "http://localhost:8080/api/v1/employees/";
 
-/* Constantes de los botones */
+/* Button constants */
 const POST_BUTTON = document.getElementById("post-button");
 const PUT_BUTTON = document.getElementById("put-button");
 const GET_BY_ID_BUTTON = document.getElementById("get-by-id-button");
@@ -12,7 +12,7 @@ const GET_ALL_BUTTON = document.getElementById("get-all-button");
 const DELETE_BY_ID_BUTTON = document.getElementById("delete-by-id-button");
 const DELETE_ALL_BUTTON = document.getElementById("delete-all-button");
 
-/* Metodo post */
+/* POST method */
 function saveEmployee() {
     let name = document.getElementById("post-name").value;
     let lastName = document.getElementById("post-lastName").value;
@@ -28,7 +28,7 @@ function saveEmployee() {
         return;
     } else {
         const errorContainer = document.getElementById("error-container");
-        errorContainer.innerHTML = "Datos cargados de manera correcta.";
+        errorContainer.innerHTML = "Data loaded successfully.";
     }
 
     const postRequest = {
@@ -44,7 +44,7 @@ function saveEmployee() {
     functions.postData(postRequest);
 }
 
-/* Metodo put */
+/* PUT method */
 function updateEmployeeById() {
     const ID_UPDATED = document.getElementById("put-id").value;
     const nameUpdated = document.getElementById("put-name").value;
@@ -59,7 +59,7 @@ function updateEmployeeById() {
     const errors = functions.isValidData(nameUpdated, lastNameUpdated, emailUpdated, dniUpdated, ageUpdated, cellphoneUpdated);
     if (errors.length > 0) {
         const errorContainer = document.getElementById("error-put-container");
-        errorContainer.innerHTML = "<p>Por favor, corrija los siguientes errores:</p><ul>";
+        errorContainer.innerHTML = "<p>Please correct the following errors:</p><ul>";
 
         errors.forEach((error) => {
             errorContainer.innerHTML += `<li>${error}</li>`;
@@ -69,7 +69,7 @@ function updateEmployeeById() {
         return;
     } else {
         const errorContainer = document.getElementById("error-put-container");
-        errorContainer.innerHTML = "Datos actualizados de manera correcta."
+        errorContainer.innerHTML = "Data updated successfully."
     }
 
     const putRequest = {
@@ -100,7 +100,7 @@ function updateEmployeeById() {
         });
 }
 
-/* Metodos DELETE */
+/* DELETE method */
 function deleteEmployeById() {
     const div = document.getElementById("delete-by-id-div");
     const DELETE_ID = document.getElementById("delete-id").value;
@@ -113,16 +113,16 @@ function deleteEmployeById() {
     fetch(BY_ID_ENDPOINT, deleteOptions)
         .then(response => {
             if(!response.ok) {
-                div.innerHTML = "No se encontró una persona con el ID especificado.";
+                div.innerHTML = "No person found with the specified ID.";
             } else if (response.ok) {
                 functions.deleteByIdTable(DELETE_ID);
-                div.innerHTML = `Se eliminó la persona con el id: ${DELETE_ID}`;
+                div.innerHTML = `The person with ID: ` + `${DELETE_ID}` + ` was deleted`;
             } else {
-                console.error('Error: no existe una persona con el id especificado', response.statusText);
+                console.error('Error: There is no person with the specified ID', response.statusText);
             }
         })
         .catch(error => {
-            console.error('Error: no existe una persona con el id especificado', error);
+            console.error('Error: There is no person with the specified ID', error);
         });
 }
 function deleteAllEmployees() {
@@ -135,21 +135,21 @@ function deleteAllEmployees() {
     fetch(GENERAL_ENDPOINT, deleteOptions)
         .then(response => {
             if (!response.ok){
-                div.innerHTML = "No se encontraron datos de personas cargadas.";
+                div.innerHTML = "All persons deleted successfully.";
             } else if (response.ok) {
                 functions.deleteAllTable();
-                div.innerHTML = "Se eliminaron todos los datos de las personas";
+                div.innerHTML = "No data of loaded persons found";
 
             } else {
-                console.error('Error: no existe una persona con el id especificado', response.statusText);
+                console.error('Error: There is no person with the specified ID', response.statusText);
             }
         })
         .catch(error => {
-            console.error('Error: no existe una persona con el id especificado', error);
+            console.error('Error: There is no person with the specified ID', error);
         });
 }
 
-/* Metodos get */
+/* GET method */
 function getEmployeeById() {
     const GET_ID = document.getElementById("get-id").value;
     const BY_ID_ENDPOINT = `http://localhost:8080/api/v1/employees/${GET_ID}`;
@@ -158,7 +158,7 @@ function getEmployeeById() {
         .then(response => {
             if (!response.ok) {
                 const div = document.getElementById("get-by-id-div");
-                div.innerHTML = "No se encontró una persona con el ID especificado.";
+                div.innerHTML = "There is no person with the specified ID.";
             }
             return response.json();
         })
@@ -186,7 +186,7 @@ function getEmployeesByGender() {
     fetch(BY_GENDER_ENDPOINT)
         .then(response => {
             if(!response.ok){
-                div.innerHTML = "No se encontraron personas con el género especificado";
+                div.innerHTML = "No persons found with the specified gender";
             }else {
                 return response.json()
             }
@@ -212,7 +212,7 @@ function getAllEmployees() {
     fetch(GENERAL_ENDPOINT)
         .then(response => {
             if(!response.ok){
-                div.innerHTML = "No se encontraron personas";
+                div.innerHTML = "No persons found";
             }else {
                 return response.json()
             }
@@ -232,7 +232,7 @@ function getAllEmployees() {
         })
 }
 
-/* Botones que llaman a los metodos */
+/* Buttons that call the methods */
 POST_BUTTON.addEventListener("click", function () {
         saveEmployee();
 });
