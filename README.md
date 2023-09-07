@@ -139,7 +139,7 @@ Ejemplo por Postman
 - URL: htpp://localhost:8080/api/v1/employees/gender/{gender}
 - Metodo GET
 - Parametros:
-	gender (Enum MASCULINO, FEMENUNO) (url)
+	gender (Enum MASCULINO, FEMENINO) (url)
 - Respuesta:
 	200: Lista de personas por genero (DTO)  
 	400 - 500: excepcion personalizada (EmployeeGenderNotFoundException)
