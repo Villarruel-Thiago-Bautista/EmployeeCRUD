@@ -95,15 +95,12 @@ public class EmployeeServiceTest {
 
     @Test
     public void deleteEmployeeByIdTest() {
-        // Configura el comportamiento de findById para que devuelva un empleado cuando se le pase el ID 1L
         Employee employee = new Employee();
         employee.setId(1L);
         when(employeeRepository.findById(1L)).thenReturn(Optional.of(employee));
 
-        // Configura el comportamiento de deleteById para que no haga nada
         doNothing().when(employeeRepository).deleteById(1L);
 
-        // Llama al método que debería eliminar el empleado con ID 1L
         employeeServiceImpl.deleteEmployeeById(1L);
 
 
@@ -121,7 +118,6 @@ public class EmployeeServiceTest {
         employeeUpdate.setId(1L);
         employeeUpdate.setName("GordoTrolo");
 
-        // Configura employeeRepository.findById para devolver employeeUpdate en lugar de employee
         when(employeeRepository.findById(id)).thenReturn(java.util.Optional.of(employeeUpdate));
 
         EmployeeDTO result = employeeServiceImpl.updateEmployeeById(id, employeeUpdate);
