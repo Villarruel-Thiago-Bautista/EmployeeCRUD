@@ -45,7 +45,7 @@ springdoc.swagger-ui.path=/doc/swagger-ui-custom.html
 Reemplazá tu_base_de_datos, tu_usuario y tu_contraseña con la información correspondiente a tu configuración de MySQL.
 
 ### Creá la Base de Datos
-Abrí tu cliente de MySQL o el gestor de base de datos SQL de tu preferencia, o utilizá una herramienta como phpMyAdmin para crear la base de datos con el nombre que especificaste en la URL anterior.
+Abrí tu cliente de MySQL, o utilizá una herramienta como phpMyAdmin para crear la base de datos con el nombre que especificaste en la URL anterior.
 
 ### Ejecutá la Aplicación
 Una vez que hayas configurado la base de datos y guardado los cambios en application.properties, podes ejecutar la aplicación. Busca la clase principal "EmployeeCrudApplication" (etiquetada como @SpringBootApplication) y ejecutala como una aplicación Java en tu entorno de desarrollo.
