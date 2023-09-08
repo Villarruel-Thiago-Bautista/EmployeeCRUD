@@ -26,14 +26,14 @@ public class Employee {
     @Column(name = "name", nullable = false)
     @NotBlank(message = "The field cannot be empty")
     @NotNull(message = "The field cannot be null")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "The name field cannot contain numbers or special characters")
+    @Pattern(regexp = "^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$", message = "The name field cannot contain numbers or special characters")
     @Schema(description = "Employee's name", example = "John")
     private String name;
 
     @Column(name = "lastName", nullable = false)
     @NotBlank(message = "The field cannot be empty")
     @NotNull(message = "The field cannot be null")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "The lastname field cannot contain numbers or special characters")
+    @Pattern(regexp = "^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$", message = "The lastname field cannot contain numbers or special characters")
     @Schema(description = "Employee's name", example = "Doe")
     private String lastName;
 
@@ -65,8 +65,8 @@ public class Employee {
     @Column(name = "dni", nullable = false)
     @NotBlank(message = "The field cannot be empty")
     @NotNull(message = "The field cannot be null")
-    @Pattern(regexp = "^[0-9]{8}$", message = "The DNI (National Identification Document) field must contain 8 numeric digits.")
-    @Schema(description = "Employee's DNI (National Identification Document)", example = "12345678")
+    @Pattern(regexp = "^[0-9]{7,8}$", message = "The DNI (National Identification Document) field must contain 7 or 8 numeric digits.")
+    @Schema(description = "Employee's DNI (National Identification Document)", example = "12345678 or 1234567")
     private String dni;
 
 

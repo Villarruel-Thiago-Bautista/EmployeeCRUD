@@ -83,14 +83,5 @@ public class EmployeeController{
         employeeServiceImpl.deleteEmployeeById(id);
     }
 
-    @DeleteMapping("/")
-    @Operation(summary = "Delete all persons", description = "Deletes all persons.")
-    @ApiResponse(responseCode = "200", description = "All persons deleted successfully")
-    @ApiResponse(responseCode = "400", description = "Request error")
-    @ApiResponse(responseCode = "500", description = "Internal server error")
-    @ApiResponse(responseCode = "404", description = "Empty list of persons")
-    public void deleteEmployeeById(){
-        employeeServiceImpl.deleteAllEmployees();
-    }
 
 }

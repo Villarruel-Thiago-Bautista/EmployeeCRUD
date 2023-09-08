@@ -10,7 +10,6 @@ const GET_BY_ID_BUTTON = document.getElementById("get-by-id-button");
 const GET_BY_GENDER_BUTTON = document.getElementById("get-by-gender-button");
 const GET_ALL_BUTTON = document.getElementById("get-all-button");
 const DELETE_BY_ID_BUTTON = document.getElementById("delete-by-id-button");
-const DELETE_ALL_BUTTON = document.getElementById("delete-all-button");
 
 /* POST method */
 function saveEmployee() {
@@ -125,29 +124,6 @@ function deleteEmployeById() {
             console.error('Error: There is no person with the specified ID', error);
         });
 }
-function deleteAllEmployees() {
-    const div = document.getElementById("delete-all-div");
-
-    const deleteOptions = {
-        method: "DELETE"
-    };
-
-    fetch(GENERAL_ENDPOINT, deleteOptions)
-        .then(response => {
-            if (!response.ok){
-                div.innerHTML = "All persons deleted successfully.";
-            } else if (response.ok) {
-                functions.deleteAllTable();
-                div.innerHTML = "No data of loaded persons found";
-
-            } else {
-                console.error('Error: There is no person with the specified ID', response.statusText);
-            }
-        })
-        .catch(error => {
-            console.error('Error: There is no person with the specified ID', error);
-        });
-}
 
 /* GET method */
 function getEmployeeById() {
@@ -250,7 +226,4 @@ GET_BY_ID_BUTTON.addEventListener("click", function () {
     });
 GET_BY_GENDER_BUTTON.addEventListener("click", function () {
         getEmployeesByGender();
-    });
-GET_ALL_BUTTON.addEventListener("click", function () {
-        getAllEmployees();
     });

@@ -95,11 +95,11 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 function isValidName(name) {
-    const nameRegex = /^[a-zA-Z\s]+$/;
+    const nameRegex = /^[a-zA-Z\sñÑáéíóúÁÉÍÓÚ]+$/u;
     return nameRegex.test(name);
 }
 function isValidDni(dni) {
-    const dniRegex = /^[0-9]{8}$/;
+    const dniRegex = /^[0-9]{7,8}/;
     return dniRegex.test(dni);
 }
 
@@ -179,10 +179,6 @@ function deleteByIdTable(DELETE_ID) {
         }
     }
 }
-function deleteAllTable(){
-    const TABLE = document.getElementById("table-employees").getElementsByTagName("tbody")[0];
-    TABLE.innerHTML = "";
-}
 
 export default {
     postData,
@@ -197,5 +193,4 @@ export default {
     printByGender,
     printAll,
     deleteByIdTable,
-    deleteAllTable
 };

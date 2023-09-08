@@ -83,15 +83,5 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    @Override
-    public void deleteAllEmployees() {
-
-        List<Employee> employeeList = employeeRepository.findAll();
-        if (employeeList.isEmpty()) {
-            throw new EmptyListException();
-        } else {
-            employeeRepository.deleteAll();
-        }
-    }
 
 }
