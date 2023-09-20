@@ -1,7 +1,7 @@
 package com.exampleproject.employeecrud.Services.Implementation;
 
 import com.exampleproject.employeecrud.Dto.EmployeeDTO;
-import com.exampleproject.employeecrud.Exceptions.EmployeeGenderNotFound;
+import com.exampleproject.employeecrud.Exceptions.GenderNotFound;
 import com.exampleproject.employeecrud.Exceptions.EmployeeNotFoundException;
 import com.exampleproject.employeecrud.Exceptions.EmptyListException;
 import com.exampleproject.employeecrud.Mapper.EmployeeMapper;
@@ -50,13 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeDTO> getEmployeesByGender(Gender gender) {
-
-        List<Employee> employeeList = employeeRepository.findAllByGender(gender);
-        if(gender == Gender.MALE  && employeeList.stream().noneMatch(employee -> employee.getGender() == gender) || gender == Gender.FEMALE && employeeList.stream().noneMatch(employee -> employee.getGender() == gender)) {
-            throw new EmployeeGenderNotFound(gender);
-        } else {
-            return EmployeeMapper.INSTANCE.employeeListToEmployeeDTOList(employeeList);
-        }
+        return genderValue(gender);
     }
 
 
@@ -64,7 +58,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDTO updateEmployeeById(Long id, Employee employee) {
 
         Employee employeeUpdated = employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
-        employeeUpdated.setName(employee.getName());
+        employeeUpdated.setFirstName(employee.getFirstName());
         employeeUpdated.setLastName(employee.getLastName());
         employeeUpdated.setAge(employee.getAge());
         employeeUpdated.setEmail(employee.getEmail());
@@ -78,10 +72,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteEmployeeById(Long id) {
-
-        Employee employee = employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
+        employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
         employeeRepository.deleteById(id);
     }
 
+    private List<EmployeeDTO> genderValue(Gender gender){
+        List<Employee> employeeList = employeeRepository.findAllByGender(gender);
+        if (gender == Gender.MALE  && employeeList.stream().noneMatch(employee -> employee.getGender() == gender) || gender == Gender.FEMALE && employeeList.stream().noneMatch(employee -> employee.getGender() == gender)) {
+            throw new GenderNotFound(gender);
+        } else {
+            return EmployeeMapper.INSTANCE.employeeListToEmployeeDTOList(employeeList);
+        }
+    }
 
 }

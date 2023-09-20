@@ -3,7 +3,7 @@ package com.exampleproject.employeecrud.Controller;
 import com.exampleproject.employeecrud.Dto.EmployeeDTO;
 import com.exampleproject.employeecrud.Models.Entities.Employee;
 import com.exampleproject.employeecrud.Models.Gender;
-import com.exampleproject.employeecrud.Services.Implementation.EmployeeServiceImpl;
+import com.exampleproject.employeecrud.Services.EmployeeService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -19,10 +19,10 @@ import java.util.List;
 @RequestMapping("/api/v1/employees")
 public class EmployeeController{
 
-    private final EmployeeServiceImpl employeeServiceImpl;
+    private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeServiceImpl employeeServiceImpl) {
-        this. employeeServiceImpl = employeeServiceImpl;
+    public EmployeeController(EmployeeService employeeService) {
+        this. employeeService = employeeService;
     }
 
     @PostMapping("/")
@@ -31,7 +31,7 @@ public class EmployeeController{
     @ApiResponse(responseCode = "400", description = "Request error")
     @ApiResponse(responseCode = "500", description = "Internal server error")
     public EmployeeDTO saveEmployee(@Valid @RequestBody Employee employee){
-        return employeeServiceImpl.saveEmployee(employee);
+        return employeeService.saveEmployee(employee);
     }
 
     @GetMapping("/{id}")
@@ -41,7 +41,7 @@ public class EmployeeController{
     @ApiResponse(responseCode = "500", description = "Internal server error")
     @ApiResponse(responseCode = "404", description = "Person not found")
     public EmployeeDTO getEmployeeById(@PathVariable Long id) {
-        return employeeServiceImpl.getEmployeeById(id);
+        return employeeService.getEmployeeById(id);
     }
 
     @GetMapping("/")
@@ -51,7 +51,7 @@ public class EmployeeController{
     @ApiResponse(responseCode = "500", description = "Internal server error")
     @ApiResponse(responseCode = "404", description = "Empty list of persons")
     public List<EmployeeDTO> getAllEmployees(){
-        return employeeServiceImpl.getAllEmployees();
+        return employeeService.getAllEmployees();
     }
 
     @GetMapping("/gender/{gender}")
@@ -61,7 +61,7 @@ public class EmployeeController{
     @ApiResponse(responseCode = "500", description = "Internal server error")
     @ApiResponse(responseCode = "404", description = "Person not found by gender")
     public List<EmployeeDTO> getEmployeesByGender(@PathVariable Gender gender) {
-        return employeeServiceImpl.getEmployeesByGender(gender);
+        return employeeService.getEmployeesByGender(gender);
     }
 
     @PutMapping("/{id}")
@@ -70,7 +70,7 @@ public class EmployeeController{
     @ApiResponse(responseCode = "400", description = "Request error")
     @ApiResponse(responseCode = "500", description = "Internal server error")
     public EmployeeDTO updateEmployeeById(@Valid @PathVariable Long id, @RequestBody Employee employee){
-        return employeeServiceImpl.updateEmployeeById(id, employee);
+        return employeeService.updateEmployeeById(id, employee);
     }
 
     @DeleteMapping("/{id}")
@@ -80,7 +80,7 @@ public class EmployeeController{
     @ApiResponse(responseCode = "500", description = "Internal server error")
     @ApiResponse(responseCode = "404", description = "Person not found")
     public void deleteEmployeeById(@PathVariable Long id){
-        employeeServiceImpl.deleteEmployeeById(id);
+        employeeService.deleteEmployeeById(id);
     }
 
 

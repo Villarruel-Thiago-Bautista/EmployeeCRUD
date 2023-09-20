@@ -23,18 +23,18 @@ public class Employee {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "firstname", nullable = false)
     @NotBlank(message = "The field cannot be empty")
     @NotNull(message = "The field cannot be null")
     @Pattern(regexp = "^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$", message = "The name field cannot contain numbers or special characters")
     @Schema(description = "Employee's name", example = "John")
-    private String name;
+    private String firstName;
 
     @Column(name = "lastName", nullable = false)
     @NotBlank(message = "The field cannot be empty")
     @NotNull(message = "The field cannot be null")
     @Pattern(regexp = "^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$", message = "The lastname field cannot contain numbers or special characters")
-    @Schema(description = "Employee's name", example = "Doe")
+    @Schema(description = "Employee's lastName", example = "Doe")
     private String lastName;
 
     @Column(name = "age", nullable = false)
@@ -51,15 +51,16 @@ public class Employee {
     private String email;
 
     @Column(name = "cellphone", nullable = false)
-    @Positive(message = "Must be positive and non-null")
+    @NotBlank(message = "The field cannot be empty")
     @NotNull(message = "The field cannot be null")
-    @Schema(description = "Employee's phone number", example = "123456789")
-    private Long cellphone;
+    @Pattern(regexp = "^[0-9()+\\-\\s]*$", message = "The field should only contain numbers, parentheses, plus or minus symbols, and spaces.")
+    @Schema(description = "Employee's phone number", example = "+43 (X) 1234 56-789")
+    private String cellphone;
 
     @Column(name = "gender", nullable = false)
     @NotNull(message = "The field cannot be null")
     @Enumerated(value = EnumType.STRING)
-    @Schema(description = "Employee's phone number", example = "MALE")
+    @Schema(description = "Employee's gender", example = "MALE")
     private Gender gender;
 
     @Column(name = "dni", nullable = false)
