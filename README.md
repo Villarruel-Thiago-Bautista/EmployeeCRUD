@@ -16,7 +16,7 @@ La interfaz (frontend) fue hecha con HTML, CSS y JavaScript, es responsive para 
 	- [GET ALL](#get-all)
 	- [DELETE BY ID](#delete-by-id)
 	- [DELETE ALL](#delete-all)
-
+- [Autenticación y Autorización](#autenticación-y-autorizacion)
 
 ## Instalación
 
@@ -219,3 +219,6 @@ Ejemplo por Postman
 ### Documentación Swagger
 
 Para acceder a la documentación, una vez corrido el programa, ingrese a: http://localhost:{su_puerto}/doc/swagger-ui/index.html
+
+### Autenticación y Autorización
+Autenticación y autorización con Spring Security y JWT (JWT)... pronto.
